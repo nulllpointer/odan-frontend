@@ -1,16 +1,21 @@
+///<reference path="contacts.component.ts"/>
 import {Headers, Http, RequestOptions} from '@angular/http';
 import {Injectable} from "@angular/core";
-import {Observable} from "rxjs";
-import {Hero} from "../Hero";
 import 'rxjs/add/operator/retry';
-import {map} from "rxjs/operator/map";
+import {Contact} from "./contact";
+import {ContactsComponent} from "./contacts.component";
+import {Subject} from "rxjs/Subject";
 
 
 @Injectable()
-export class ProductService {
+export class ContactService {
+
+
+
+
     options: RequestOptions;
     id: number;
-    hero: Hero;
+    hero: Contact;
     results: string[];
     headers = new Headers({
         'Content-Type': 'application/json'
@@ -18,17 +23,13 @@ export class ProductService {
 
 
     private baseUrl = 'http://localhost:8080';
-    private baseUrl1 = 'http://localhost:8080/all/product';
-    private baseUrl2 = 'http://localhost:8080/all/product';
+    private baseUrl1 = 'http://localhost:8080/v1/billing/contacts';
+    private baseUrl2 = 'http://localhost:8080/v1/billing/contacts';
 
 
     constructor(private http: Http) {
         let test = {"search": "person"};
-        var her = new Hero();
-        /* let id=this.product.id;
-         let name=this.product.name;
-         let price=this.product.price;
-         */
+        var her = new Contact();
 
     }
 
@@ -38,31 +39,27 @@ export class ProductService {
         let body = JSON.stringify(heros);
         console.log(body);
         return this.http
-            .post("http://localhost:8080/all/product", body, this.options)
+            .post("http://localhost:8080/v1/billing/contacts", body, this.options)
             .toPromise()
             .catch(this.handleError);
 
     }
 
 
-  /*  getAllDBHeroByID(id): Promise <Product> {
-
-        alert(id);
-            console.log(`${id}`);
+  getAllContacts() {
 
 
-        return this.http.get(`http://localhost:8080/all/hero/${id}`).subscribe(data => {
-                // Read the result field from the JSON response.
-                this.results = data['results'];
-            });
-    .catch(this.handleError);
-*!/
-    }
-  */  getAllProducts(): Promise <Hero[]> {
-        return this.http.get("http://localhost:8080/v1/billing/sales")
+
+      return this.http.get("http://localhost:8080/v1/billing/contacts")
             .toPromise()
-            .then(response => response.json() as Hero[])
+            .then(response => {response.json().contacts as Contact[]
+            let comp= new ContactsComponent(this,this.http);
+
+            console.log("our data", response.json())
+
+            })
             .catch(this.handleError);
+
 
     }
 

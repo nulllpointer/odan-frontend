@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Hero} from "../../../../Hero";
+import {ProductService} from "../../../../product/productservice";
+import {Http} from "@angular/http";
 
 @Component({
   selector: 'app-tabs',
@@ -7,9 +10,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TabsComponent implements OnInit {
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }

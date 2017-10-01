@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {OrderService} from "./orderservice";
 import {FormGroup} from "@angular/forms";
 import {Order} from "./order";
@@ -7,7 +7,6 @@ import {ProductService} from "../product/productservice";
 import {Createproductservice} from "../create-product/createproductservice.service";
 import {ActivatedRoute} from "@angular/router";
 import {Cart} from "./cart";
-import {log} from "util";
 
 @Component({
     selector: 'app-order',
@@ -66,7 +65,7 @@ export class OrderComponent implements OnInit {
 
         this.productService.getAllProducts()
             .then(aa => this.herooo = aa);
-        /* let herooo = new Hero();
+        /* let herooo = new Product();
          herooo;*/
 
     }

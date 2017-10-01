@@ -1,57 +1,51 @@
 import {Headers, Http, RequestOptions} from '@angular/http';
-import {Hero} from './Hero';
 import {Injectable} from "@angular/core";
-import {Observable} from "rxjs";
+import 'rxjs/add/operator/retry';
+import {Product} from "./product";
 
 
 @Injectable()
-export class TablesService {
+export class MenuService {
     options: RequestOptions;
+    id: number;
+    product: Product;
+    results: string[];
     headers = new Headers({
         'Content-Type': 'application/json'
     });
 
 
     private baseUrl = 'http://localhost:8080';
-    private baseUrl1 = 'http://localhost:8080/all/product/new';
+    private baseUrl1 = 'http://localhost:8080/all/product';
     private baseUrl2 = 'http://localhost:8080/all/product';
 
 
-    constructor(private http: Http, private location: Location) {
-        let test = {"search": "person"}
-
+    constructor(private http: Http) {
+        let test = {"search": "person"};
+        var her = new Product();
+        /* let id=this.product.id;
+         let name=this.product.name;
+         let price=this.product.price;
+         */
 
     }
 
 
-    createService(heros): Promise<any> {
+    createProoduct(heros): Promise<any> {
         this.options = new RequestOptions({headers: this.headers});
         let body = JSON.stringify(heros);
         console.log(body);
         return this.http
-            .post(this.baseUrl1, body, this.options)
+            .post("http://localhost:8080/all/product", body, this.options)
             .toPromise()
             .catch(this.handleError);
 
     }
 
-
-    getAllDBHeroByID(id: number): Promise <Hero> {
-
-        const url = `${this.baseUrl2}/${id}`;
-        return this.http.get(url)
+ getAllProducts(): Promise <Product[]> {
+        return this.http.get("http://localhost:8080/v1/billing/sales")
             .toPromise()
-            .then(response => response.json() as Hero)
-            .catch(this.handleError);
-
-
-    }
-
-
-    getAllDBHeroes(): Promise <Hero[]> {
-        return this.http.get(this.baseUrl + '/all/product')
-            .toPromise()
-            .then(response => response.json() as Hero[])
+            .then(response => response.json() as Product[])
             .catch(this.handleError);
 
     }

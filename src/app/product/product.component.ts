@@ -1,12 +1,12 @@
-import {Component, OnInit, Injectable, Input, Output, EventEmitter} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 
-import {Headers, Http} from '@angular/http';
+import {Http} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import {Observable} from "rxjs";
 
-import {FormGroup, FormControl, Validators} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProductService} from "./productservice";
+import {Product} from "../layout/menu/product";
 import {Hero} from "../Hero";
 
 
@@ -28,11 +28,11 @@ export class ProductComponent implements OnInit {
 
 
 
-    private heroesUrl: "http://localhost:8080/all/hero";
+    private heroesUrl: "http://localhost:8080/all/product";
     results: string[];
     private values: any[];
-    herooo: Hero[];
-    heroList: Hero[] = [];
+    herooo: Product[];
+    heroList: Product[] = [];
     processValidation = false;
     heroIdToUpdate = null;
     requestProcessing = false;

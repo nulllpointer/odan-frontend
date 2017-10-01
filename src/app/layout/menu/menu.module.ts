@@ -4,6 +4,7 @@ import {MenuRoutingModule} from "./menu-routing.module";
 import {MenuComponent} from "./menu.component";
 import {TabsComponent} from "./tabs/tabs.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {MenuService} from "./menuservice";
 
 
 @NgModule({
@@ -12,6 +13,8 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
         MenuRoutingModule,
         NgbModule.forRoot(),
     ],
-    declarations: [MenuComponent,TabsComponent]
+    declarations: [MenuComponent,TabsComponent],
+
+    providers:[MenuService]
 })
 export class MenuModule { }
