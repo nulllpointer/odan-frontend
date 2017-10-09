@@ -45,7 +45,6 @@ export class CreateProductComponent implements OnInit {
             this.id = +params['id'];
         });
 
-
         this.editservice.getById(`http://localhost:8080/all/hero/${this.id}`).subscribe(
             data => {
                 this.datas = data;

@@ -11,6 +11,8 @@ export class ContactService {
 
     id: number;
     hero: Contact;
+
+
     constructor(private http: Http) {
         let test = {"search": "person"};
         var her = new Contact();
@@ -18,17 +20,36 @@ export class ContactService {
     }
 
 
-    createContact(heros):  Observable<any> {
-       return this.http.post('http://localhost:8080/v1/billing/contacts', heros);
+    createContact(url, heros): Observable<any> {
+        return this.http.post(url, heros);
 
     }
-    update(heros):  Observable<any> {
-        return this.http.put('http://localhost:8080/v1/billing/contacts', heros);
 
+    update(heros): Observable<any> {
+
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.put('http://localhost:8080/v1/billing/contacts', heros, {headers: headers}).map(res => res.json());;
     }
 
     getAllContacts(): Observable<any> {
         return this.http.get('http://localhost:8080/v1/billing/contacts').map((res: Response) => res.json().contacts);
+
+    }
+
+    getContact(name, email): Observable<any> {
+
+        return this.http.get(`http://localhost:8080/v1/billing/contacts?firstName=${name}&email=${email}`).map((res: Response) => res.json().contacts);
+
+    }
+
+    getbyId(id): Observable<any> {
+        return this.http.get(`http://localhost:8080/v1/billing/contacts/${id}`).map((res: Response) => res.json().data);
+
+    }
+
+    deleteContact(url: string, contact): Observable<any> {
+      return  this.http.delete(url, contact);
 
 
     }
@@ -46,9 +67,4 @@ export class ContactService {
     }
 
 
-    getContactById(id: number):Observable<any> {
-        return this.http.get(`http://localhost:8080/v1/billing/contacts//${id}`).map((res: Response) => res.json().data);
-
-
-    }
 }

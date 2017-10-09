@@ -1,7 +1,7 @@
 import {Headers, Http, RequestOptions} from '@angular/http';
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
-import {Hero} from "../Hero";
+import {Hero} from "../../Hero";
 
 
 @Injectable()

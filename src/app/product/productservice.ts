@@ -37,6 +37,7 @@ export class ProductService {
         this.options = new RequestOptions({headers: this.headers});
         let body = JSON.stringify(heros);
         console.log(body);
+
         return this.http
             .post("http://localhost:8080/all/product", body, this.options)
             .toPromise()

@@ -1,3 +1,4 @@
+<!--
 <nav class="navbar navbar-inverse bg-inverse">
 
     <a href="/orders" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Orders</a>
@@ -151,5 +152,84 @@
 
 
 </div>
+-->
+<div class="row">
+    <div class="col-md-8">
+        <app-tabs></app-tabs>
+    </div>
+    <div class="col-md-4 fixed-cart" >
+
+
+        <div class="table">
+
+            <div class="row th">
+                <div class="col col-pro align-center">Product</div>
+                <div class="col col-price align-center ">Price</div>
+                <div class="col col-qty align-center">QTY</div>
+                <div class="col align-center">VAT</div>
+                <div class="col align-center">Total</div>
+            </div>
+
+            <div class="row">
+
+                <div class="col col-pro  align-center">
+                    <option *ngFor="let item of herooo" [value]="item.name">{{item.name}}</option>
+                    <p>Chicken Momo</p>
+                </div>
+
+                <div class="col col-price col-numeric align-center ">
+                    <p>120</p>
+                </div>
+
+                <div class="col col-qty  align-center">
+                    <a href="#" class="qty qty-minus">-</a>
+                    <input class="col-numeric p" type="number" value="3"/>
+                    <a href="#" class="qty qty-plus">+</a>
+                </div>
+
+                <div class="col col-vat col-numeric align-center">
+                    <p>£2.95</p>
+                </div>
+                <div class="col col-total col-numeric align-center">
+                    <p> £182.95</p>
+                </div>
+            </div>
+
+
+            <div class="tf align-center">
+
+
+                <div class="row ">
+                    <div class="col col-pro align-center">
+                        <p style="text-position: left">Shipping
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col col-pro align-center">
+                        <p>Shipping</p>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col col-pro align-center">
+                        <p>Total</p>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#" class="btn">Confirm and Checkout</a>
+            <br><br><br>
+
+        </div>
+
+
+    </div>
+</div>
+
+
+<!--<app-cart></app-cart>-->
+
+<table-filtering></table-filtering>
+
+
 
 

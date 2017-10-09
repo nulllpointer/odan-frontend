@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {animate, style, transition, trigger} from "@angular/animations";
+import {ContactService} from "../contactservice";
+import {Contact} from "../contact";
 
 @Component({
     selector: 'app-dialog',
@@ -20,14 +22,28 @@ import {animate, style, transition, trigger} from "@angular/animations";
 export class DialogComponent implements OnInit {
     @Input() closable = true;
     @Input() visible: boolean;
+    id: number;
+    datas: any
+
+    @Input() contact = new Contact();
     @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    constructor() { }
+    constructor(private contactservice: ContactService) {
+    }
 
-    ngOnInit() { }
+    ngOnInit() {
+    }
 
     close() {
         this.visible = false;
         this.visibleChange.emit(this.visible);
+
     }
+
+
+    helloHero(){
+        alert("home calling home");
+    }
+
+
 }

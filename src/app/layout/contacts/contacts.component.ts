@@ -1,31 +1,43 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Contact} from "./contact";
 import {ContactService} from "./contactservice";
-import {Http, Response} from "@angular/http";
+import {Http, Response, RequestMethod} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 import {Headers, RequestOptions} from '@angular/http';
+import {DialogComponent} from "./dialog/dialog.component";
+import {FormGroup, FormBuilder, FormControl} from '@angular/forms';
 
 @Component({
     selector: 'app-contacts',
     templateUrl: './contacts.component.html',
-    styleUrls: ['./contacts.component.scss']
+    styleUrls: ['./contacts.component.scss'],
+    providers: [DialogComponent],
+
 })
 export class ContactsComponent implements OnInit {
-    @Input() firstName: string;
-    @Input() email: string;
-    @Input() contact: Contact = new Contact();
 
-    showDialog = false;
-
+    id: number
+    private datas: any;
 
     today: number = Date.now();
-    private heroesUrl: "http://localhost:8080/all/contact";
+    private heroesUrl = "http://localhost:8080/v1/billing/contacts";
     results: string[];
     private values: any[];
     contacts: Contact[];
+    @Input() contact: Contact = new Contact();
+    @Input() firstName: string = '';
+    @Input() lastName: string = '';
+    @Input() email: string = '';
+    @Input() phone: string = '';
 
 
-    constructor(private contactService: ContactService, private http: Http) {
+
+
+    @ViewChild(DialogComponent)
+    private localDialog: DialogComponent;
+
+
+    constructor(private contactService: ContactService, private http: Http, private dialogcomponent: DialogComponent) {
         this.contactService.getAllContacts().subscribe(data => this.contacts = data);
 
 
@@ -33,34 +45,14 @@ export class ContactsComponent implements OnInit {
 
 
     ngOnInit(): void {
-        /* this.getContacts().then(data=>this.herooo=data)
-         console.log("my data ",this.herooo)*/
-
-
-        /* this.http.get('/api/items').subscribe(data => {
-             // Read the result field from the JSON response.
-             this.results = data['results'];
- */
-
 
     }
 
     createContact() {
 
+        var contactjson = JSON.stringify(this.contact);
 
-        var contact = {
-            firstName: this.contact.firstName,
-            email: this.contact.email
-
-        };
-
-        alert(contact);
-
-
-        var contactjson = JSON.stringify(contact);
-
-
-        this.contactService.createContact(contactjson).subscribe(
+        this.contactService.createContact(this.heroesUrl, contactjson).subscribe(
             suc => {
                 console.log("hero", suc.json().message);
                 alert(suc.json().message);
@@ -74,49 +66,85 @@ export class ContactsComponent implements OnInit {
     }
 
 
+    createOrUpdateContact(contact) {
+        alert(contact.id)
+
+
+        if (contact.id == 0 || contact.id == "undefined" || contact.id == null) {
+            this.createContact();
+        }
+        else {
+            this.updateContact();
+        }
+
+    }
+
     updateContact() {
-
-
-        var contact = {
-            id: 1,
-            firstName: "amit",
-            email: "achaulagain123@gmail.com"
-
-        };
-        var contactjson = JSON.stringify(contact);
-
-
+        var contactjson = JSON.stringify(this.contact);
         this.contactService.update(contactjson).subscribe(
             suc => {
                 console.log("hero", suc.json().message);
-                alert(suc.json().message);
                 location.reload();
             },
             err => {
                 console.log(err);
             }
         );
+        alert("updated successfully")
+        location.reload();
 
     }
 
-    getContact(id) {
-        this.contactService.getContactById(id).subscribe(data => {
-            this.contact = data;
-        });
+    getContactById(id) {
+
+        this.contactService.getbyId(id).subscribe(
+            data => {
+                this.contact = data;
+                console.log("I CANT SEE DATA HERE also: ", this.contact);
+            }
+        );
+
+        console.log(this.contact.firstName)
+        this.firstName = this.contact.firstName
+        this.lastName = this.contact.lastName
+        this.phone = this.contact.phone
+        this.email = this.contact.email
+
+    }
+
+    deleteContact(id) {
+
+
+       let contact=new Contact();
+       id=63;
+
+        var body=JSON.stringify(id)
+        alert(body)
+        return this.contactService.deleteContact(this.heroesUrl,body).subscribe();
+//        location.reload()
 
     }
 
 
-    /* getContacts() :Observable<Contact[]>{
+    test(hero) {
+        this.contact = hero;
+
+        this.localDialog.visible = true;
+    }
 
 
-          this.http.get('http://localhost:8080/v1/billing/contacts').map((res: Response) => res.json().contacts).subscribe(res => {
-               this.contacts = res;
-              return  res;
-          } );
+    private extractData(res: Response) {
+        let body = res.json();
+        return body || {};
+    }
 
-         return
 
-     }*/
+    private handleError(error: any): Promise<any> {
+        console.error('An error occurred', error);
+        return Promise.reject(error.message || error);
+    }
+
+
+
 
 }

@@ -2,11 +2,10 @@ import {Component, Input, OnInit} from '@angular/core';
 import {OrderService} from "./orderservice";
 import {FormGroup} from "@angular/forms";
 import {Order} from "./order";
-import {Hero} from "../Hero";
-import {ProductService} from "../product/productservice";
-import {Createproductservice} from "../create-product/createproductservice.service";
 import {ActivatedRoute} from "@angular/router";
 import {Cart} from "./cart";
+import {ProductService} from "../../product/productservice";
+import {Createproductservice} from "../../create-product/createproductservice.service";
 
 @Component({
     selector: 'app-order',
@@ -15,10 +14,7 @@ import {Cart} from "./cart";
 })
 export class OrderComponent implements OnInit {
 
-    heroList: Hero[] = [];
-    herooo: Hero[] = [];
     private datas: any;
-    private hero: Hero;
     private sub: any;
     current = "test";
     private log: string = '';
@@ -52,21 +48,17 @@ export class OrderComponent implements OnInit {
 
     ngOnInit() {
 
-        //shows list of all products
-        this.getProducts();
-
     }
 
     cartList: Cart[] = [];
-
-
-    getProducts() {
+//OLD CODES
+/*    getProducts() {
 
 
         this.productService.getAllProducts()
             .then(aa => this.herooo = aa);
-        /* let herooo = new Product();
-         herooo;*/
+        /!* let herooo = new Product();
+         herooo;*!/
 
     }
 
@@ -79,9 +71,6 @@ export class OrderComponent implements OnInit {
         location.reload();
 
     }
-
-
-
 
     fillValue(value) {
         let product = this.herooo.find((item: any) => item.name == value);
@@ -129,7 +118,7 @@ export class OrderComponent implements OnInit {
         console.log("grandtotal", this.grandtotal)
 
 
-    }
+    }*/
 
 
 }
