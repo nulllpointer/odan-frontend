@@ -1,5 +1,5 @@
 ///<reference path="contacts.component.ts"/>
-import {Headers, Http, RequestOptions, Response} from '@angular/http';
+import {Headers, Http, RequestMethod, RequestOptions, Response, RequestOptionsArgs} from '@angular/http';
 import {Injectable} from "@angular/core";
 import 'rxjs/add/operator/retry';
 import {Contact} from "./contact";
@@ -11,6 +11,8 @@ export class ContactService {
 
     id: number;
     hero: Contact;
+    private headers: any;
+
 
 
     constructor(private http: Http) {
@@ -48,12 +50,35 @@ export class ContactService {
 
     }
 
-    deleteContact(url: string, contact): Observable<any> {
-      return  this.http.delete(url, contact);
+    deleteData(url:string){
+
+        this.http.delete(url, this.headers)
+            .subscribe();
 
 
     }
 
+
+
+
+    /*deleteContact(url: string): Observable<any> {
+        let body = {
+            id: 6,
+            };
+
+        let options = new RequestOptionsArgs({
+            body: body,
+            method: RequestMethod.Delete
+        });
+
+        this.http.request('http://testAPI:3000/stuff', options)
+            .subscribe((ok)=>{console.log(ok)});
+
+      return this.http.request(url, options);
+
+
+    }
+*/
 
     private extractData(res: Response) {
         let body = res.json();

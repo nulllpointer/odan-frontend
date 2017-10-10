@@ -6,6 +6,7 @@ import {Observable} from "rxjs/Observable";
 import {Headers, RequestOptions} from '@angular/http';
 import {DialogComponent} from "./dialog/dialog.component";
 import {FormGroup, FormBuilder, FormControl} from '@angular/forms';
+import {Createproductservice} from "../../create-product/createproductservice.service";
 
 @Component({
     selector: 'app-contacts',
@@ -29,8 +30,6 @@ export class ContactsComponent implements OnInit {
     @Input() lastName: string = '';
     @Input() email: string = '';
     @Input() phone: string = '';
-
-
 
 
     @ViewChild(DialogComponent)
@@ -113,18 +112,11 @@ export class ContactsComponent implements OnInit {
     }
 
     deleteContact(id) {
+        this.contactService.deleteData(`http://localhost:8080/v1/billing/contacts/${id}`);
+        alert("Deleted Successfuly")
 
-
-       let contact=new Contact();
-       id=63;
-
-        var body=JSON.stringify(id)
-        alert(body)
-        return this.contactService.deleteContact(this.heroesUrl,body).subscribe();
-//        location.reload()
 
     }
-
 
     test(hero) {
         this.contact = hero;
@@ -143,8 +135,6 @@ export class ContactsComponent implements OnInit {
         console.error('An error occurred', error);
         return Promise.reject(error.message || error);
     }
-
-
 
 
 }
