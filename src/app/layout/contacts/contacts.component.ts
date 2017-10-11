@@ -83,14 +83,13 @@ export class ContactsComponent implements OnInit {
         this.contactService.update(contactjson).subscribe(
             suc => {
                 console.log("hero", suc.json().message);
-                location.reload();
             },
             err => {
                 console.log(err);
             }
         );
-        alert("updated successfully")
-        location.reload();
+        this.contactService.getAllContacts()
+
 
     }
 

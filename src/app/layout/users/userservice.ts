@@ -1,28 +1,28 @@
-///<reference path="contacts.component.ts"/>
+///<reference path="users.component.ts"/>
 import {Headers, Http, RequestMethod, RequestOptions, Response, RequestOptionsArgs} from '@angular/http';
 import {Injectable} from "@angular/core";
 import 'rxjs/add/operator/retry';
-import {Contact} from "./contact";
+import {User} from "./user";
 import {Observable} from "rxjs/Observable";
 
 
 @Injectable()
-export class ContactService {
+export class UserService {
 
     id: number;
-    hero: Contact;
+    hero: User;
     private headers: any;
 
 
 
     constructor(private http: Http) {
         let test = {"search": "person"};
-        var her = new Contact();
+        var her = new User();
 
     }
 
 
-    createContact(url, heros): Observable<any> {
+    createUser(url, heros): Observable<any> {
         return this.http.post(url, heros);
 
     }
@@ -31,22 +31,22 @@ export class ContactService {
 
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this.http.post('http://localhost:8080/v1/billing/contacts', heros);
+        return this.http.put('http://localhost:8080/v1/security/users', heros, {headers: headers}).map(res => res.json());;
     }
 
-    getAllContacts(): Observable<any> {
-        return this.http.get('http://localhost:8080/v1/billing/contacts').map((res: Response) => res.json().contacts);
+    getAllUsers(): Observable<any> {
+        return this.http.get('http://localhost:8080/v1/security/users').map((res: Response) => res.json().users);
 
     }
 
-    getContact(name, email): Observable<any> {
+    getUser(name, email): Observable<any> {
 
-        return this.http.get(`http://localhost:8080/v1/billing/contacts?firstName=${name}&email=${email}`).map((res: Response) => res.json().contacts);
+        return this.http.get(`http://localhost:8080/v1/security/users?firstName=${name}&email=${email}`).map((res: Response) => res.json().users);
 
     }
 
     getbyId(id): Observable<any> {
-        return this.http.get(`http://localhost:8080/v1/billing/contacts/${id}`).map((res: Response) => res.json().data);
+        return this.http.get(`http://localhost:8080/v1/security/users/${id}`).map((res: Response) => res.json().data);
 
     }
 
@@ -61,7 +61,7 @@ export class ContactService {
 
 
 
-    /*deleteContact(url: string): Observable<any> {
+    /*deleteUser(url: string): Observable<any> {
         let body = {
             id: 6,
             };

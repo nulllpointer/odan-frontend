@@ -1,0 +1,123 @@
+<app-dialog [(visible)]="showDialog">
+
+    <div class="-address-book">
+        <form>
+            <div class="form-group row">
+                <label for="lgFormGroupInput1" class="col-sm-2 col-form-label col-form-label-lg">First
+                    Name</label>
+                <div class="col-sm-10">
+                    <input [(ngModel)]="user.firstName" name="some1" class="form-control form-control-lg"
+                           id="lgFormGroupInput1" placeholder="Enter First Name">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="lgFormGroupInput2" class="col-sm-2 col-form-label col-form-label-lg">Last
+                    Name</label>
+                <div class="col-sm-10">
+                    <input [(ngModel)]="user.lastName" name="some2" class="form-control form-control-lg"
+                           id="lgFormGroupInput2" placeholder="Enter Last Name">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="lgFormGroupInput3"
+                       class="col-sm-2 col-form-label col-form-label-lg">Email</label>
+                <div class="col-sm-10">
+                    <input [(ngModel)]="user.email" type="email" name="some3" class="form-control form-control-lg"
+                           id="lgFormGroupInput3" placeholder="you@example.com">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="lgFormGroupInput"
+                       class="col-sm-2 col-form-label col-form-label-lg">Phone</label>
+                <div class="col-sm-10">
+                    <input [(ngModel)]="user.phone" name="some4"
+                           class="form-control form-control-lg" id="lgFormGroupInput"
+                           placeholder="Phone Number">
+                </div>
+            </div>
+            <button (click)="createOrUpdateUser(user)" name="something" class="btn btn-primary">Add user
+            </button>
+            <button type="reset" type="reset" class="btn btn-secondary">Reset Button</button>
+        </form>
+
+
+    </div>
+
+
+</app-dialog>
+
+            <div class="card " align="center">
+                <!--<div class="card-header">Customer Details</div>
+                -->
+
+                <div class="card card-inverse" style="background-color: #333; border-color: #333;">
+                    <div class="card-block">
+                        <h3 class="card-title">Welcome to Customer Database</h3>
+                        <p class="card-text">Please make necessary modifications</p>
+                        <button (click)="showDialog = !showDialog" class="btn-primary">ADD NEW CUSTOMER</button>
+
+                    </div>
+                </div>
+                <br><br>
+
+                <div class="card-body">
+
+                <!--<div class="table-responsive" align="center">
+                    <table class="table table-bordered" class="dataTable" width="100%" cellspacing="0">
+
+                        <thead class="thead-inverse">
+                        <tr>
+                            <th scope="row">First Name</th>
+                            <th scope="row">Last Name</th>
+                            <th scope="row">Email</th>
+                            <th scope="row">user Number</th>
+                            <th scope="row">Update</th>
+                            <th scope="row">Delete</th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+
+
+                        &lt;!&ndash;<a *ngFor="let product of herooo"  [routerLink]="['']">&ndash;&gt;
+                        <tr *ngFor="let hero of users">
+                            <td>{{hero.firstName}}</td>
+                            <td>{{hero.lastName}}</td>
+                            <td>{{hero.email}}</td>
+                            <td>{{hero.phone}}</td>
+
+                            <td>
+                                <button (click)="test(hero)" name="something" class="btn-outline-primary">
+                                    Update
+                                </button>
+                            </td>
+                            <td>
+                                <button (click)="deleteuser(hero.id)" name="something" class="btn-danger">Delete
+                                </button>
+                            </td>
+
+
+                        </tr>
+
+                        </tbody>
+                    </table>
+
+
+                </div>
+                -->
+
+
+            </div>
+
+
+
+        </div>
+
+<table-pagination-example></table-pagination-example>
+
+
+
+
+
+
