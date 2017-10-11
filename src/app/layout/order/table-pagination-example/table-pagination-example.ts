@@ -6,8 +6,8 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
-import {ContactService} from "../../contacts/contactservice";
 import {Contact} from "../../contacts/contact";
+import {RestfullService} from "../../../shared/services/restfullService";
 
 /**
  * @title Table with pagination
@@ -26,7 +26,7 @@ export class TablePaginationExample {
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
-    constructor(private contactService:ContactService) {
+    constructor(private contactService:RestfullService) {
         this.exampleDatabase = new ExampleDatabase(contactService);
 
     }
@@ -87,7 +87,7 @@ export class ExampleDatabase {
 
     constructor(contactService) {
 
-        contactService.getAllContacts().subscribe(data => {this.contacts = data
+        contactService.getAll().subscribe(data => {this.contacts = data
             console.log("one",data);
                for(let hero of this.contacts){
                this.addUser(hero);

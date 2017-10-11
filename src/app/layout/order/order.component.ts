@@ -6,7 +6,7 @@ import {ActivatedRoute} from "@angular/router";
 import {Cart} from "./cart";
 import {ProductService} from "../../product/productservice";
 import {Createproductservice} from "../../create-product/createproductservice.service";
-import {ContactService} from "../contacts/contactservice";
+import {RestfullService} from "../../shared/services/restfullService";
 
 @Component({
     selector: 'app-order',
@@ -41,7 +41,7 @@ export class OrderComponent implements OnInit {
     private orderid: number;
     private showForm: boolean = false;
 
-    constructor(private route: ActivatedRoute, private orderService: OrderService, private productService: ProductService, private contactService: ContactService) {
+    constructor(private route: ActivatedRoute, private orderService: OrderService, private productService: ProductService, private contactService: RestfullService) {
         // this.getProducts();
 
 

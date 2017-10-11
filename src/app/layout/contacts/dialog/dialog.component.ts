@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {animate, style, transition, trigger} from "@angular/animations";
-import {ContactService} from "../contactservice";
 import {Contact} from "../contact";
+import {RestfullService} from "../../../shared/services/restfullService";
 
 @Component({
     selector: 'app-dialog',
@@ -28,10 +28,11 @@ export class DialogComponent implements OnInit {
     @Input() contact = new Contact();
     @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    constructor(private contactservice: ContactService) {
+    constructor(private contactservice: RestfullService) {
     }
 
     ngOnInit() {
+        this.visible=false;
     }
 
     close() {

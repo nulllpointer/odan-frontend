@@ -24,7 +24,7 @@ import {MatToolbarModule} from "@angular/material";
 import {MatTabsModule, MatTooltipModule} from "@angular/material";
 import {MatSnackBarModule} from "@angular/material";
 import {MatRadioModule} from "@angular/material";
-import {ContactService} from "../contacts/contactservice";
+import {RestfullService} from "../../shared/services/restfullService";
 
 
 @NgModule({
@@ -68,7 +68,7 @@ import {ContactService} from "../contacts/contactservice";
 
     ],
     declarations: [OrderComponent,TabsComponent, CollapseComponent, TableFilteringComponent, TablePaginationExample],
-    providers:[OrderService, MenuService, CollapseComponent, TableFilteringComponent,ContactService
+    providers:[OrderService, MenuService, CollapseComponent, TableFilteringComponent
     ],
     schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 
