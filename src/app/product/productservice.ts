@@ -1,7 +1,6 @@
 import {Headers, Http, RequestOptions} from '@angular/http';
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
-import {Hero} from "../Hero";
 import 'rxjs/add/operator/retry';
 import {map} from "rxjs/operator/map";
 
@@ -10,7 +9,6 @@ import {map} from "rxjs/operator/map";
 export class ProductService {
     options: RequestOptions;
     id: number;
-    hero: Hero;
     results: string[];
     headers = new Headers({
         'Content-Type': 'application/json'
@@ -24,7 +22,7 @@ export class ProductService {
 
     constructor(private http: Http) {
         let test = {"search": "person"};
-        var her = new Hero();
+    //    var her = new Hero();
         /* let id=this.product.id;
          let name=this.product.name;
          let price=this.product.price;
@@ -59,14 +57,14 @@ export class ProductService {
     .catch(this.handleError);
 *!/
     }
-  */  getAllProducts(): Promise <Hero[]> {
+  */ /* getAllProducts(): Promise <Hero[]> {
         return this.http.get("http://localhost:8080/v1/billing/sales")
             .toPromise()
             .then(response => response.json() as Hero[])
             .catch(this.handleError);
 
     }
-
+*/
 
     private extractData(res: Response) {
         let body = res.json();

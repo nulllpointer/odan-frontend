@@ -1,14 +1,12 @@
 import {Headers, Http, RequestOptions} from '@angular/http';
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
-import {Hero} from "../../Hero";
 
 
 @Injectable()
 export class OrderService {
     options: RequestOptions;
     id:number;
-    hero:Hero;
      headers = new Headers({
         'Content-Type': 'application/json'
     });
@@ -34,7 +32,7 @@ export class OrderService {
     }
 
 
-    getAllDBHeroByID(id): Promise <Hero> {
+  /*  getAllDBHeroByID(id): Promise <Hero> {
 
         alert(id);
         console.log(`${id}`);
@@ -60,7 +58,7 @@ export class OrderService {
             .catch(this.handleError);
 
     }
-
+*/
 
     private extractData(res: Response) {
         let body = res.json();

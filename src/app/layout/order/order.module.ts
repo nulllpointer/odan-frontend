@@ -25,6 +25,7 @@ import {MatTabsModule, MatTooltipModule} from "@angular/material";
 import {MatSnackBarModule} from "@angular/material";
 import {MatRadioModule} from "@angular/material";
 import {RestfullService} from "../../shared/services/restfullService";
+import {ArticlesPubSubService} from "./service/articles-pub-sub.service";
 
 
 @NgModule({
@@ -68,7 +69,7 @@ import {RestfullService} from "../../shared/services/restfullService";
 
     ],
     declarations: [OrderComponent,TabsComponent, CollapseComponent, TableFilteringComponent, TablePaginationExample],
-    providers:[OrderService, MenuService, CollapseComponent, TableFilteringComponent
+    providers:[OrderService, MenuService, CollapseComponent, TableFilteringComponent, ArticlesPubSubService
     ],
     schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 

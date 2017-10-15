@@ -28,9 +28,20 @@ export class RestfullService {
 
 
     getAll(url): Observable<any> {
-        return this.http.get(url).map((res: Response) => res.json().contacts);
+        return this.http.get(url).map((res: Response) => res.json());
 
     }
+
+   /* get(url,body): Observable<any> {
+        return this.http.get(url,body).map((res: Response) => res.json());
+
+    }
+*/
+
+
+
+
+
 
     getContact(name, email): Observable<any> {
 
@@ -39,7 +50,7 @@ export class RestfullService {
     }
 
     getbyId(url): Observable<any> {
-        return this.http.get(url).map((res: Response) => res.json().data);
+        return this.http.get(url).map((res: Response) => res.json());
 
     }
 

@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
-import {Hero} from "../Hero";
 import {NavigationExtras, UrlTree} from "@angular/router";
 import {Http, RequestOptionsArgs} from "@angular/http";
 
@@ -26,7 +25,6 @@ export class Createproductservice {
 
 
 
-    hero: Hero;
     id: number;
 
 

@@ -7,7 +7,6 @@ import 'rxjs/add/operator/toPromise';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProductService} from "./productservice";
 import {Product} from "../layout/menu/product";
-import {Hero} from "../Hero";
 
 
 @Component({
@@ -37,7 +36,6 @@ export class ProductComponent implements OnInit {
     heroIdToUpdate = null;
     requestProcessing = false;
     statusCode: number;
-    herojson: Hero;
 
 
     heroForm = new FormGroup({
@@ -54,7 +52,7 @@ export class ProductComponent implements OnInit {
 
 
     ngOnInit(): void {
-        this.heroList.push(this.getProducts());
+       // this.heroList.push(this.getProducts());
 
        /* this.http.get('/api/items').subscribe(data => {
             // Read the result field from the JSON response.
@@ -82,7 +80,7 @@ export class ProductComponent implements OnInit {
 
 
 
-    getProducts(): Hero {
+   /* getProducts(): Hero {
 
 
         this.productService.getAllProducts()
@@ -93,7 +91,7 @@ export class ProductComponent implements OnInit {
 
 
     }
-
+*/
 }
 
 

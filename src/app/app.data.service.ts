@@ -1,5 +1,4 @@
 import {Headers, Http, RequestOptions} from '@angular/http';
-import {Hero} from './Hero';
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 
@@ -36,7 +35,7 @@ export class TablesService {
     }
 
 
-    getAllDBHeroByID(id: number): Promise <Hero> {
+   /* getAllDBHeroByID(id: number): Promise <Hero> {
 
         const url = `${this.baseUrl2}/${id}`;
         return this.http.get(url)
@@ -55,7 +54,7 @@ export class TablesService {
             .catch(this.handleError);
 
     }
-
+*/
 
     private extractData(res: Response) {
         let body = res.json();

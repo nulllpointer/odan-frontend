@@ -14,6 +14,9 @@ import {
     ChatComponent
 } from './components';
 import { StatModule } from '../../shared';
+import {CartComponent} from "./components/cart-component/cart.component";
+import {DialogComponent} from "./components/cart-dialog/dialog.component";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
     imports: [
@@ -21,13 +24,15 @@ import { StatModule } from '../../shared';
         NgbCarouselModule.forRoot(),
         NgbAlertModule.forRoot(),
         DashboardRoutingModule,
-        StatModule,
+        FormsModule
     ],
     declarations: [
         DashboardComponent,
         TimelineComponent,
         NotificationComponent,
-        ChatComponent
+        ChatComponent,
+        CartComponent,
+        DialogComponent
     ]
 })
 export class DashboardModule { }

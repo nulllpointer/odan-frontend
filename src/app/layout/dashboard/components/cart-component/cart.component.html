@@ -1,0 +1,98 @@
+<button class="btn-primary" (click)="cloneTemplate()">Clone Template</button>
+<div [@dialog] *ngIf="visible" class="dialog">
+    <ng-content></ng-content>
+    <button *ngIf="closable" (click)="close()" aria-label="Close" class="dialog__close-btn">X</button>
+</div>
+<div *ngIf="visible" class="overlay" (click)="close()"></div>
+
+
+<cart-dialog [(visible)]="showDialog">
+
+    <div class="-address-book">
+        <form>
+            <div class="form-group row">
+                <label for="lgFormGroupInput1" class="col-sm-2 col-form-label col-form-label-lg">First
+                    Name</label>
+                <div class="col-sm-10">
+                    <input [(ngModel)]="cart.identifier" name="some1" class="form-control form-control-lg"
+                           id="lgFormGroupInput1" placeholder="Enter identifier" value="{{cart.identifier}}">
+                </div>
+            </div>
+
+            <button (click)="createOrUpdateCart(cart)" name="something" class="btn btn-primary">Add Cart
+            </button>
+            <button type="reset" type="reset" class="btn btn-secondary">Reset Button</button>
+        </form>
+
+
+    </div>
+
+
+</cart-dialog>
+
+<template #clone>
+
+
+    <div class="col-md-3">
+
+        <div class="card card-inverse card-success">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col col-xs-3">
+                        <i class="fa fa-shopping-cart fa-5x"></i>
+                    </div>
+                    <div class="col col-xs-9 text-right">
+                        <div class="d-block huge">124</div>
+                        <div class="d-block">{{cart.identifier}}</div>
+                        <button class="btn-primary" (click)="updateCart()">Update</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="float-left">View Details {{data}}</span>
+                <a href="javascript:void(0)" class="float-right card-inverse">
+                    <span><i class="fa fa-arrow-circle-right"></i></span>
+                </a>
+            </div>
+        </div>
+
+
+    </div>
+</template>
+
+<div class="row">
+    <div #container></div>
+</div>
+
+
+<div class="row">
+
+    <div *ngFor="let cart of carts" class="col-md-3">
+
+        <div>
+            <div class="card card-inverse card-success">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col col-xs-3">
+                            <i class="fa fa-shopping-cart fa-5x"></i>
+                        </div>
+                        <div class="col col-xs-9 text-right">
+                            <div class="d-block huge">124</div>
+
+                            <div class="d-block">{{cart.identifier}}</div>
+                            <button class="btn-primary" (click)="updateCart(cart)">Update</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a class="float-left" [routerLink]="['/order',cart.id]"  routerLinkActive="active">View Items </a>
+                    <a href="javascript:void(0)" class="float-right card-inverse">
+                        <span><i class="fa fa-arrow-circle-right"></i></span>
+                    </a>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

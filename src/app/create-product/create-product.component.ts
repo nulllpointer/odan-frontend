@@ -1,7 +1,6 @@
 import {Component, OnInit, Input, AfterViewInit} from '@angular/core';
 import {Params, ActivatedRoute, ParamMap, Router, NavigationEnd, UrlTree, NavigationExtras} from "@angular/router";
 import {TablesService} from "../app.data.service";
-import {Hero} from "../Hero";
 import {ProductService} from "../product/productservice";
 import {ProductComponent} from "../product/product.component";
 import {URLSearchParams, Http, Headers} from "@angular/http";
@@ -21,7 +20,6 @@ export class CreateProductComponent implements OnInit {
 
     // private navigateByUrl(url: string|UrlTree, extras: NavigationExtras): Promise<boolean>;
 
-    hero: Hero;
     private datas: any;
 
 
@@ -45,7 +43,7 @@ export class CreateProductComponent implements OnInit {
             this.id = +params['id'];
         });
 
-        this.editservice.getById(`http://localhost:8080/all/hero/${this.id}`).subscribe(
+     /*   this.editservice.getById(`http://localhost:8080/all/hero/${this.id}`).subscribe(
             data => {
                 this.datas = data;
                 console.log("I CANT SEE DATA HERE also: ", this.datas);
@@ -56,17 +54,17 @@ export class CreateProductComponent implements OnInit {
             }
         );
 
-
+*/
     }
 
 
-    post() {
+  /*  post() {
         this.editservice.postData(`http://localhost:8080/all/hero/${this.id}`, this.hero);
         alert("Successfully Updated");
 
 
     }
-
+*/
     delete() {
         this.editservice.deleteData(`http://localhost:8080/all/product/delete/${this.id}`);
         alert("Deleted Successfuly")

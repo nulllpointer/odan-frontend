@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Hero} from "../../../Hero";
 import {Http} from "@angular/http";
 import {MenuService} from "../menuservice";
 
@@ -20,13 +19,10 @@ export class TabsComponent implements OnInit {
     private heroesUrl: "http://localhost:8080/all/product";
     results: string[];
     private values: any[];
-    herooo: Hero[];
-    heroList: Hero[] = [];
     processValidation = false;
     heroIdToUpdate = null;
     requestProcessing = false;
     statusCode: number;
-    herojson: Hero;
 
 
 
@@ -36,7 +32,7 @@ export class TabsComponent implements OnInit {
 
 
     ngOnInit(): void {
-        this.heroList.push(this.getProducts());
+      //  this.heroList.push(this.getProducts());
 
         /* this.http.get('/api/items').subscribe(data => {
              // Read the result field from the JSON response.
@@ -64,7 +60,7 @@ export class TabsComponent implements OnInit {
 
 
 
-    getProducts(): Hero {
+   /* getProducts(): Hero {
 
 
         this.menuService.getAllProducts()
@@ -75,7 +71,7 @@ export class TabsComponent implements OnInit {
 
 
     }
-
+*/
 
 
 }

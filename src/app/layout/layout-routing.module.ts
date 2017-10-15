@@ -16,7 +16,7 @@ const routes: Routes = [
             { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' },
             { path: 'menu', loadChildren: './menu/menu.module#MenuModule' },
             { path: 'contacts', loadChildren: './contacts/contacts.module#ContactsModule' },
-            { path: 'order', loadChildren: './order/order.module#OrderModule' },
+            { path: 'order/:id', loadChildren: './order/order.module#OrderModule' },
 
         ]
     }

@@ -1,4 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, ViewChild} from '@angular/core';
+import {DialogComponent} from "../../../layout/dashboard/components/cart-dialog/dialog.component";
+import {Cart} from "../../../layout/dashboard/cart";
 
 @Component({
     selector: 'app-stat',
@@ -13,7 +15,18 @@ export class StatComponent implements OnInit {
     @Input() data: number;
     @Output() event: EventEmitter<any> = new EventEmitter();
 
-    constructor() { }
+    @ViewChild(DialogComponent)
+    private localDialog: DialogComponent;
 
-    ngOnInit() {}
+    @Input() cart: Cart = new Cart();
+
+
+    constructor() {
+    }
+
+    ngOnInit() {
+        this.localDialog.visible = false;
+    }
+
+
 }

@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { routerTransition } from '../../router.animations';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {routerTransition} from '../../router.animations';
+import {RestfullService} from "../../shared/services/restfullService";
+import {Cart} from "./cart";
+import {DialogComponent} from "./components/cart-dialog/dialog.component";
 
 @Component({
     selector: 'app-dashboard',
@@ -10,8 +13,17 @@ import { routerTransition } from '../../router.animations';
 export class DashboardComponent implements OnInit {
     public alerts: Array<any> = [];
     public sliders: Array<any> = [];
+    carts: Cart[];
+    @Input() cart: Cart = new Cart();
 
-    constructor() {
+    @ViewChild(DialogComponent)
+    private localDialog: DialogComponent;
+
+    private requestUrl = "http://localhost:8080/v1/billing/carts";
+
+    constructor(private restfullService: RestfullService) {
+        this.restfullService.getAll(this.requestUrl).subscribe(data => this.carts = data.carts);
+
         this.sliders.push({
             imagePath: 'assets/images/slider1.jpg',
             label: 'First slide label',
@@ -50,4 +62,11 @@ export class DashboardComponent implements OnInit {
         const index: number = this.alerts.indexOf(alert);
         this.alerts.splice(index, 1);
     }
+
+    viewContact(hero) {
+        this.cart = hero;
+
+        this.localDialog.visible = true;
+    }
+
 }
