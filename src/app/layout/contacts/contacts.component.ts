@@ -1,12 +1,8 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Contact} from "./contact";
-import {ContactService} from "./contactservice";
-import {Http, Response, RequestMethod} from "@angular/http";
-import {Observable} from "rxjs/Observable";
-import {Headers, RequestOptions} from '@angular/http';
+import {Http} from "@angular/http";
 import {DialogComponent} from "./dialog/dialog.component";
-import {FormGroup, FormBuilder, FormControl} from '@angular/forms';
-import {Createproductservice} from "../../create-product/createproductservice.service";
+import {RestfullService} from "../../shared/services/restfullService";
 
 @Component({
     selector: 'app-contacts',
@@ -21,7 +17,9 @@ export class ContactsComponent implements OnInit {
     private datas: any;
 
     today: number = Date.now();
-    private heroesUrl = "http://localhost:8080/v1/billing/contacts";
+    private requestUrl = 'http://localhost:8080/v1/billing/contacts';
+    private deleteRequestUrl = 'http://localhost:8080/v1/billing/contacts/delete';
+
     results: string[];
     private values: any[];
     contacts: Contact[];
@@ -36,22 +34,20 @@ export class ContactsComponent implements OnInit {
     private localDialog: DialogComponent;
 
 
-    constructor(private contactService: ContactService, private http: Http, private dialogcomponent: DialogComponent) {
-        this.contactService.getAllContacts().subscribe(data => this.contacts = data);
-
-
+    constructor(private restfullService: RestfullService, private http: Http, private dialogcomponent: DialogComponent) {
+       // this.restfullService.getAll(this.requestUrl).subscribe(data => this.contacts = data.contacts);
     }
-
 
     ngOnInit(): void {
+        this.localDialog.visible = false;
 
     }
 
-    createContact() {
+    createOrUpdateContact(contact) {
 
         var contactjson = JSON.stringify(this.contact);
 
-        this.contactService.createContact(this.heroesUrl, contactjson).subscribe(
+        this.restfullService.create(this.requestUrl, contactjson).subscribe(
             suc => {
                 console.log("hero", suc.json().message);
                 alert(suc.json().message);
@@ -64,38 +60,9 @@ export class ContactsComponent implements OnInit {
 
     }
 
-
-    createOrUpdateContact(contact) {
-        alert(contact.id)
-
-
-        if (contact.id == 0 || contact.id == "undefined" || contact.id == null) {
-            this.createContact();
-        }
-        else {
-            this.updateContact();
-        }
-
-    }
-
-    updateContact() {
-        var contactjson = JSON.stringify(this.contact);
-        this.contactService.update(contactjson).subscribe(
-            suc => {
-                console.log("hero", suc.json().message);
-            },
-            err => {
-                console.log(err);
-            }
-        );
-        this.contactService.getAllContacts()
-
-
-    }
-
     getContactById(id) {
 
-        this.contactService.getbyId(id).subscribe(
+        this.restfullService.getbyId(this.requestUrl + "/" + id).subscribe(
             data => {
                 this.contact = data;
                 console.log("I CANT SEE DATA HERE also: ", this.contact);
@@ -111,28 +78,22 @@ export class ContactsComponent implements OnInit {
     }
 
     deleteContact(id) {
-        this.contactService.deleteData(`http://localhost:8080/v1/billing/contacts/${id}`);
-        alert("Deleted Successfuly")
+        var x;
+        this.restfullService.deleteById(this.deleteRequestUrl + "/" + id).subscribe(data => {
+            console.log("hrreer")
+            console.log(data);
+            console.log("agin");
 
+
+
+        });
 
     }
 
-    test(hero) {
+    viewContact(hero) {
         this.contact = hero;
 
         this.localDialog.visible = true;
-    }
-
-
-    private extractData(res: Response) {
-        let body = res.json();
-        return body || {};
-    }
-
-
-    private handleError(error: any): Promise<any> {
-        console.error('An error occurred', error);
-        return Promise.reject(error.message || error);
     }
 
 

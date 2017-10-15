@@ -6,9 +6,7 @@ import {DialogComponent} from "./dialog/dialog.component";
 import {Browser} from "selenium-webdriver";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {BrowserModule} from "@angular/platform-browser";
-import {UsersComponent} from "./users.component";
-import {UserService} from "./userservice";
-import {TablePaginationExample} from "./table-pagination-example/table-pagination-example";
+import {UsersDataTable} from "./users-data-table/users-data-table";
 import {
     MatAutocompleteModule,
     MatButtonModule,
@@ -21,6 +19,8 @@ import {
     MatTableModule, MatSortModule, MatRadioModule, MatSnackBarModule, MatToolbarModule, MatTooltipModule, MatTabsModule,
 } from "@angular/material";
 import {UsersRoutingModule} from "./users-routing.module";
+import {RestfullService} from "../../shared/services/restfullService";
+import {UsersComponent} from "./users.component";
 
 
 @NgModule({
@@ -63,8 +63,9 @@ import {UsersRoutingModule} from "./users-routing.module";
       MatTooltipModule,
 
 
+
   ],
-  declarations: [UsersComponent, TablePaginationExample, DialogComponent],
-    providers: [UserService, DialogComponent]
+  declarations: [UsersComponent, UsersDataTable, DialogComponent],
+    providers: [RestfullService, DialogComponent]
 })
 export class UsersModule { }

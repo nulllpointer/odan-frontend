@@ -6,19 +6,19 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
-import {UserService} from "../../users/userservice";
 import {User} from "../../users/user";
 import {isPropertyAssignment} from "codelyzer/util/astQuery";
+import {RestfullService} from "../../../shared/services/restfullService";
 
 /**
  * @title Table with pagination
  */
 @Component({
-    selector: 'table-pagination-example',
-    styleUrls: ['table-pagination-example.scss'],
-    templateUrl: 'table-pagination-example.html',
+    selector: 'contacts-data-table',
+    styleUrls: ['contacts-data-table.scss'],
+    templateUrl: 'contacts-data-table.html',
 })
-export class TablePaginationExample {
+export class ContactsDataTable {
     displayedColumns = ['userId', 'progress', 'userName', 'userPhone', 'color'];
     exampleDatabase: ExampleDatabase
     dataSource: ExampleDataSource | null;
@@ -28,8 +28,8 @@ export class TablePaginationExample {
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
 
-    constructor(private userService: UserService) {
-        this.exampleDatabase = new ExampleDatabase(userService);
+    constructor(private restfullService: RestfullService) {
+        this.exampleDatabase = new ExampleDatabase(restfullService);
 
     }
 
@@ -50,6 +50,8 @@ export interface UserData {
 
 
 export class ExampleDatabase {
+    private requestUrl = 'http://localhost:8080/v1/billing/contacts';
+
 
     userData: UserData[];
 
@@ -63,10 +65,10 @@ export class ExampleDatabase {
 
     }
 
-    constructor(userService) {
+    constructor(restfullService) {
 
-        userService.getAllUsers().subscribe(data => {
-            this.users = data
+        restfullService.getAll(this.requestUrl).subscribe(data => {
+            this.users = data.contacts
             console.log("one", data);
             for (let hero of this.users) {
                 this.addUser(hero);

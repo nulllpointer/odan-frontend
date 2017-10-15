@@ -1,24 +1,24 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {ContactsDataTable} from "./contacts-data-tables";
 
-import { TabsComponent } from './table-pagination-example';
 
-describe('TabsComponent', () => {
-  let component: TabsComponent;
-  let fixture: ComponentFixture<TabsComponent>;
+describe('ContactsDataTable', () => {
+  let component: ContactsDataTable;
+  let fixture: ComponentFixture<ContactsDataTable>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         NgbModule.forRoot()
       ],
-      declarations: [ TabsComponent ]
+      declarations: [ ContactsDataTable ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TabsComponent);
+    fixture = TestBed.createComponent(ContactsDataTable);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

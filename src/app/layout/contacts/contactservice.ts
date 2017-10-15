@@ -35,7 +35,7 @@ export class ContactService {
     }
 
     getAllContacts(): Observable<any> {
-        return this.http.get('http://localhost:8080/v1/billing/contacts').map((res: Response) => res.json().contacts);
+        return this.http.get('http://localhost:8080/v1/billing/contacts').map((res: Response) => res.json());
 
     }
 

@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {animate, style, transition, trigger} from "@angular/animations";
-import {UserService} from "../../users/userservice";
 import {User} from "../../users/user";
+import {RestfullService} from "../../../shared/services/restfullService";
 
 @Component({
     selector: 'app-dialog',
@@ -28,7 +28,7 @@ export class DialogComponent implements OnInit {
     @Input() user = new User();
     @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    constructor(private userservice: UserService) {
+    constructor(private restfullservice: RestfullService) {
     }
 
     ngOnInit() {

@@ -7,6 +7,7 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { HeaderComponent, SidebarComponent } from '../shared';
 import {TabsComponent} from "./menu/tabs/tabs.component";
+import {RestfullService} from "../shared/services/restfullService";
 
 @NgModule({
     imports: [
@@ -20,6 +21,7 @@ import {TabsComponent} from "./menu/tabs/tabs.component";
         LayoutComponent,
         HeaderComponent,
         SidebarComponent,
-    ]
+    ],
+
 })
 export class LayoutModule { }
