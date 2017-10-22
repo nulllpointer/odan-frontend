@@ -13,17 +13,69 @@
                 <th>Product</th>
                 <th>Price</th>
                 <th>Quantity</th>
+                <th>Update</th>
+                <th>Delete</th>
             </tr>
             </thead>
             <tbody>
 
             <tr *ngFor="let item of cartItems">
-                <th scope="row">{{item.product.title}}</th>
-                <td colspan="2">{{item.product.title}}</td>
-                <td>{{item.quantity}}</td>
+
+                <th scope="row">{{cartItems.indexOf(item)+1}}</th>
+                <td>{{item.productPrice.product.title}}</td>
+                <td>{{item.productPrice.price}}</td>
+                <td>
+                    <form><input [(ngModel)]="item.quantity" type="number" name="some3"
+                                 placeholder="Qty">
+                    </form>
+                </td>
+                <td>
+                    <button (click)="updateCartItem(item.id,item.quantity)">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </button>
+                </td>
+                <td>
+                    <button style="color: red" (click)="deleteCart(item)">
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </button>
+                </td>
             </tr>
             </tbody>
         </table>
+
+        <button (click)="checkout(this.cartId)" name="something" class="btn btn-primary">Check Out
+        </button>
+
+
+        <cart-item-dialog [(visible)]="showDialog">
+
+            <table class="card-block table table-hover">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr *ngFor="let item of cartItems">
+
+                    <th scope="row">{{cartItems.indexOf(item)+1}}</th>
+                    <td>{{item.productPrice.product.title}}</td>
+                    <td>{{item.productPrice.price}}</td>
+                    <td>{{item.quantity}}</td>
+
+                </tr>
+                </tbody>
+            </table>
+            <button (click)="confirmCheckout()" name="something" class="btn btn-primary">Confirm
+            </button>
+            <button type="reset" type="reset" class="btn btn-secondary">Reset Button</button>
+
+
+        </cart-item-dialog>
 
 
     </div>

@@ -2,13 +2,18 @@ import {Product} from "./product";
 
 export class CartItem {
 
+    productId: number
+    id:number
+    quantity:number
 
-    productId :number
+    productPriceId: number;
 
-    cartId:number;
+    cartId: number;
 
+    serial:number;
+    txnDate:string;
 
-
+    price:number;
 
 
 

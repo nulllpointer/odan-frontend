@@ -2,7 +2,6 @@ import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {OrderComponent} from "./order.component";
-import {OrderService} from "./orderservice";
 import {OrderRoutingModule} from "./order-routing.module";
 import {TabsComponent} from "./tabs/tabs.component";
 import {MenuService} from "../menu/menuservice";
@@ -12,20 +11,40 @@ import {
     MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,
-    MatCardModule, MatCheckboxModule, MatChipsModule,
-    MatDatepickerModule, MatDialogModule, MatExpansionModule, MatGridListModule, MatIconModule, MatInputModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
     MatListModule,
-    MatNativeDateModule, MatStepperModule, MatMenuModule, MatPaginatorModule, MatProgressBarModule,
-    MatProgressSpinnerModule, MatRippleModule, MatSelectModule, MatSliderModule, MatSidenavModule, MatSlideToggleModule,
-    MatTableModule, MatSortModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatStepperModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
 } from "@angular/material";
 import {TablePaginationExample} from "./table-pagination-example/table-pagination-example";
-import {MatToolbarModule} from "@angular/material";
-import {MatTabsModule, MatTooltipModule} from "@angular/material";
-import {MatSnackBarModule} from "@angular/material";
-import {MatRadioModule} from "@angular/material";
-import {RestfullService} from "../../shared/services/restfullService";
 import {ArticlesPubSubService} from "./service/articles-pub-sub.service";
+import {CartService} from "../../shared/services/cart-service";
+import {FormsModule} from "@angular/forms";
+import {CartItemDialogComponent} from "./cart-item-dialog/dialog.component";
 
 
 @NgModule({
@@ -65,11 +84,12 @@ import {ArticlesPubSubService} from "./service/articles-pub-sub.service";
         MatTabsModule,
         MatToolbarModule,
         MatTooltipModule,
+        FormsModule,
         NgbModule.forRoot(),
 
     ],
-    declarations: [OrderComponent,TabsComponent, CollapseComponent, TableFilteringComponent, TablePaginationExample],
-    providers:[OrderService, MenuService, CollapseComponent, TableFilteringComponent, ArticlesPubSubService
+    declarations: [OrderComponent,TabsComponent, CollapseComponent, TableFilteringComponent, TablePaginationExample,CartItemDialogComponent],
+    providers:[CartService, MenuService, CollapseComponent, TableFilteringComponent, ArticlesPubSubService
     ],
     schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 
