@@ -1,24 +1,24 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {MenuDialogComponent} from "./menu-dialog-component";
 
-import { TabsComponent } from './tabs.component';
 
-describe('TabsComponent', () => {
-  let component: TabsComponent;
-  let fixture: ComponentFixture<TabsComponent>;
+describe('MenuDialogComponent', () => {
+  let component: MenuDialogComponent;
+  let fixture: ComponentFixture<MenuDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         NgbModule.forRoot()
       ],
-      declarations: [ TabsComponent ]
+      declarations: [ MenuDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TabsComponent);
+    fixture = TestBed.createComponent(MenuDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

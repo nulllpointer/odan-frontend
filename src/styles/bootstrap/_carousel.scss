@@ -72,7 +72,7 @@
   // We can't have a transition here because WebKit cancels the carousel
   // animation if you trip this while in the middle of another animation.
 
-  // Hover/focus state
+  // Hover/focus type
   @include hover-focus {
     color: $carousel-control-color;
     text-decoration: none;

@@ -1,14 +1,13 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {OrderService} from "./orderservice";
 import {FormGroup} from "@angular/forms";
 import {Order} from "./order";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProductService} from "../../product/productservice";
-import {Createproductservice} from "../../create-product/createproductservice.service";
 import {RestfullService} from "../../shared/services/restfullService";
 import {CartItem} from "./cart-item";
-import {TabsComponent} from "./tabs/tabs.component";
 import {ArticlesPubSubService} from "./service/articles-pub-sub.service";
+import {Cart} from "../dashboard/cart";
 
 @Component({
     selector: 'app-order',
@@ -63,7 +62,9 @@ export class OrderComponent implements OnInit {
     }
 
     getAllCartItems() {
-        this.restfullService.getbyId(this.requestUrl1 + '/' + this.cartId).subscribe(data => this.cartItems = data.data.items);
+        this.restfullService.getbyId(this.requestUrl1 + '/' + this.cartId).subscribe(data =>{ this.cartItems = data.data.items,
+            console.log(this.cartItems);
+        });
 
     }
 
@@ -149,6 +150,7 @@ export class OrderComponent implements OnInit {
 
 
         }*/
+    cartList: Cart[] = [];
 
 
 }

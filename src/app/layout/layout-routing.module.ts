@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { LayoutComponent } from './layout.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {LayoutComponent} from './layout.component';
 
 const routes: Routes = [
     {
@@ -17,6 +17,10 @@ const routes: Routes = [
             { path: 'menu', loadChildren: './menu/menu.module#MenuModule' },
             { path: 'contacts', loadChildren: './contacts/contacts.module#ContactsModule' },
             { path: 'order/:id', loadChildren: './order/order.module#OrderModule' },
+            { path: 'users', loadChildren: './users/users.module#UsersModule' },
+            { path: 'users', loadChildren: './users/users.module#UsersModule' },
+
+
 
         ]
     }

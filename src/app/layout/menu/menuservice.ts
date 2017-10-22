@@ -1,7 +1,7 @@
 import {Headers, Http, RequestOptions} from '@angular/http';
 import {Injectable} from "@angular/core";
 import 'rxjs/add/operator/retry';
-import {Product} from "./product";
+import {Product} from "../order/product";
 
 
 @Injectable()

@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProductService} from "./productservice";
-import {Product} from "../layout/menu/product";
+import {Product} from "../layout/order/product";
 
 
 @Component({

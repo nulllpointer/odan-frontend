@@ -18,7 +18,7 @@
     text-decoration: none;
   }
 
-  // Disabled state lightens text and removes hover/tab effects
+  // Disabled type lightens text and removes hover/tab effects
   &.disabled {
     color: $nav-disabled-link-color;
     cursor: $cursor-disabled;

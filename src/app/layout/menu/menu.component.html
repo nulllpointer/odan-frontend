@@ -1,3 +1,107 @@
-<app-tabs></app-tabs>
+<app-dialog-menu [(visible)]="showDialog">
+
+    <div class="-address-book">
+        <form #signupForm="ngForm" (ngSubmit)="createOrUpdateProduct(product)">
+
+            <div class="form-group row">
+                <label for="lgFormGroupInput1" class="col-sm-2 col-form-label col-form-label-lg">Product
+                    Name</label>
+                <div class="col-sm-10">
+
+
+                    <input type="text" class="form-control" id="title"
+                           required
+                           pattern="[a-zA-Z][a-zA-Z ]+"
+                           [(ngModel)]="product.title" name="title"
+                           #name="ngModel" ngModel>
+                    <div [hidden]="name.valid || name.pristine"
+                         class="alert alert-danger">
+                        <div [hidden]="!name.hasError('required')">Title is required</div>
+                        <div [hidden]="!name.hasError('pattern')">Only alphabets allowed</div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="category" class="col-sm-2 col-form-label col-form-label-lg">
+                    Category
+                </label>
+
+                <mat-form-field>
+
+                    <mat-select class="form-control" #z (change)="callCategory(z.value)" placeholder="Category">
+
+                        <mat-option *ngFor="let hero of categories" [value]="hero.id">
+                            {{ hero.title }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="form-group">
+                <label for="category" class="col-sm-2 col-form-label col-form-label-lg">
+                    Principal Category Type
+                </label>
+                <mat-form-field>
+                    <mat-select class="form-control" placeholder="Principal Category Type" #t (change)="callPrincipalCategoryType(t.value)" name="name">
+                        <mat-option *ngFor="let type of principalCategoryTypes" [value]="type.name">{{ type.name }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="form-group">
+                <label for="category" class="col-sm-2 col-form-label col-form-label-lg">
+                   Product Type
+                </label>
+                <mat-form-field>
+                    <mat-select class="form-control" placeholder="Principal Category Type" #v (change)="callProductType(v.value)" name="name">
+                        <mat-option *ngFor="let type of productTypes" [value]="type.name">{{ type.name }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="form-group">
+
+                <button type="submit" [disabled]="!signupForm.form.valid" name="something" class="btn btn-primary">Add
+                    product
+                </button>
+
+                <button type="reset" type="reset" class="btn btn-secondary">Reset Button</button>
+            </div>
+
+        </form>
+
+    </div>
+
+
+</app-dialog-menu>
+
+<div class="card " align="center">
+
+    <div class="card card-inverse" style="background-color: #333; border-color: #333;">
+        <div class="card-block">
+            <h3 class="card-title">Welcome to Product Database</h3>
+            <p class="card-text">Please make necessary modifications</p>
+            <button (click)="showDialog = !showDialog" class="btn-primary">ADD NEW Product</button>
+
+        </div>
+    </div>
+    <br><br>
+
+    <div class="card-body">
+
+
+    </div>
+
+
+</div>
+
+<menu-data-table></menu-data-table>
+
+
+
 
 

@@ -24,7 +24,8 @@ import {FormsModule} from "@angular/forms";
         NgbCarouselModule.forRoot(),
         NgbAlertModule.forRoot(),
         DashboardRoutingModule,
-        FormsModule
+        FormsModule,
+
     ],
     declarations: [
         DashboardComponent,

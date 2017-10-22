@@ -49,7 +49,7 @@ export class TabsComponent implements OnInit {
 
 
         this.restfullService.getAll(this.requestUrl,).subscribe(data => {
-            this.categories = data.categories
+            this.categories = data.categorys
 
         });
     }

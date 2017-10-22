@@ -76,6 +76,8 @@ export interface ContactData {
 
 /** An example database that the data source uses to retrieve data for the table. */
 export class ExampleDatabase {
+    private requestUrl = "http://localhost:8080/v1/billing/contacts";
+
 
     contactData: ContactData[];
 
@@ -87,7 +89,7 @@ export class ExampleDatabase {
 
     constructor(contactService) {
 
-        contactService.getAll().subscribe(data => {this.contacts = data
+        contactService.getAll(this.requestUrl).subscribe(data => {this.contacts = data
             console.log("one",data);
                for(let hero of this.contacts){
                this.addUser(hero);

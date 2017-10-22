@@ -6,8 +6,9 @@ import { TranslateModule } from '@ngx-translate/core';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { HeaderComponent, SidebarComponent } from '../shared';
-import {TabsComponent} from "./menu/tabs/tabs.component";
 import {RestfullService} from "../shared/services/restfullService";
+import { OrderprocessComponent } from './orderprocess/orderprocess.component';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
     imports: [
@@ -21,6 +22,8 @@ import {RestfullService} from "../shared/services/restfullService";
         LayoutComponent,
         HeaderComponent,
         SidebarComponent,
+        OrderprocessComponent,
+        TestComponent,
     ],
 
 })

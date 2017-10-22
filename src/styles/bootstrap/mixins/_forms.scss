@@ -22,7 +22,7 @@
     }
   }
 
-  // Set validation states also for addons
+  // Set validation principalCategoryTypes also for addons
   .input-group-addon {
     color: $color;
     border-color: $color;
@@ -30,9 +30,9 @@
   }
 }
 
-// Form control focus state
+// Form control focus type
 //
-// Generate a customized focus state and for any input with the specified color,
+// Generate a customized focus type and for any input with the specified color,
 // which defaults to the `@input-border-focus` variable.
 //
 // We highly encourage you to not customize the default value, but instead use

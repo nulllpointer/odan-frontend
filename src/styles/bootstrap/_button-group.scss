@@ -117,7 +117,7 @@
 
 
 // The clickable button for toggling the menu
-// Remove the gradient and set the same inset shadow as the :active state
+// Remove the gradient and set the same inset shadow as the :active type
 .btn-group.open .dropdown-toggle {
   @include box-shadow($btn-active-box-shadow);
 

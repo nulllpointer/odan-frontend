@@ -1,0 +1,57 @@
+<div class="example-container mat-elevation-z8">
+
+    <mat-table #table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="userId">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+        </ng-container>
+
+        <!-- Progress Column -->
+        <ng-container matColumnDef="progress">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.email}}% </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="userName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.firstName}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="userPhone">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Phone </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.phone}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="update">
+            <mat-header-cell *matHeaderCellDef>Edit</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <button mat-mini-fab (click)="createOrUpdateContact(row.id)">Edit</button>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+            <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <button mat-mini-fab (click)="deleteContact(row.id)" name="something">Delete</button>
+            </mat-cell>
+        </ng-container>
+
+
+
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator #paginator
+                   [length]="exampleDatabase.data.length"
+                   [pageIndex]="0"
+                   [pageSize]="25"
+                   [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
+</div>
+
+
+

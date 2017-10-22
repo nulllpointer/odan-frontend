@@ -1,12 +1,9 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Contact} from "./contact";
-import {Http, Response, RequestMethod} from "@angular/http";
-import {Observable} from "rxjs/Observable";
-import {Headers, RequestOptions} from '@angular/http';
+import {Http} from "@angular/http";
 import {DialogComponent} from "./dialog/dialog.component";
-import {FormGroup, FormBuilder, FormControl} from '@angular/forms';
-import {Createproductservice} from "../../create-product/createproductservice.service";
 import {RestfullService} from "../../shared/services/restfullService";
+import {NgForm} from "@angular/forms";
 
 @Component({
     selector: 'app-contacts',
@@ -21,13 +18,14 @@ export class ContactsComponent implements OnInit {
     private datas: any;
 
     today: number = Date.now();
-    private requestUrl = "http://localhost:8080/v1/billing/contacts";
-    private deleteRequestUrl = "http://localhost:8080/v1/billing/contacts/delete";
+    private requestUrl = 'http://localhost:8080/v1/billing/contacts';
+    private deleteRequestUrl = 'http://localhost:8080/v1/billing/contacts/delete';
 
     results: string[];
     private values: any[];
     contacts: Contact[];
     @Input() contact: Contact = new Contact();
+    data: ''
     @Input() firstName: string = '';
     @Input() lastName: string = '';
     @Input() email: string = '';
@@ -39,21 +37,18 @@ export class ContactsComponent implements OnInit {
 
 
     constructor(private restfullService: RestfullService, private http: Http, private dialogcomponent: DialogComponent) {
-        this.restfullService.getAll(this.requestUrl).subscribe(data => this.contacts = data);
-
-
+       // this.restfullService.getAll(this.requestUrl).subscribe(data => this.contacts = data.contacts);
     }
-
 
     ngOnInit(): void {
         this.localDialog.visible = false;
 
     }
 
+    createOrUpdateContact(form: NgForm) {
+        console.log(form.value)
 
-    createOrUpdateContact(contact) {
-
-        var contactjson = JSON.stringify(this.contact);
+        var contactjson = JSON.stringify(form);
 
         this.restfullService.create(this.requestUrl, contactjson).subscribe(
             suc => {
@@ -66,44 +61,47 @@ export class ContactsComponent implements OnInit {
             }
         );
 
-
     }
 
     getContactById(id) {
 
         this.restfullService.getbyId(this.requestUrl + "/" + id).subscribe(
             data => {
-                this.contact = data;
-                console.log("I CANT SEE DATA HERE also: ", this.contact);
-            }
-        );
 
-        console.log(this.contact.firstName)
-        this.firstName = this.contact.firstName
-        this.lastName = this.contact.lastName
-        this.phone = this.contact.phone
-        this.email = this.contact.email
+                this.contact = data.data;
+                this.localDialog.visible = true;
+                console.log("I CANT SEE DATA HERE also: ", data.data.firstName);
+
+            }
+
+
+    );
+             }
+
+
 
     }
 
-    deleteContact(id) {
+    /*deleteContact(id) {
         var x;
         this.restfullService.deleteById(this.deleteRequestUrl + "/" + id).subscribe(data => {
             console.log("hrreer")
             console.log(data);
             console.log("agin");
-            
+
 
 
         });
 
     }
-
-    viewContact(hero) {
-        this.contact = hero;
+*/
+/*
+    viewContact(x) {
+        this.contact = x;
 
         this.localDialog.visible = true;
     }
+*/
 
 
-}
+
