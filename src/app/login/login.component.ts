@@ -33,10 +33,9 @@ export class LoginComponent implements OnInit {
 
         if (hero.username=="Odan" && hero.phone=="9999")
         {localStorage.setItem('isLoggedin', 'true');
+        alert("u are logged")
         }else {
             this.getErrorMessage()
-
-
         }
          }
 

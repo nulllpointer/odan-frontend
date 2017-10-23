@@ -1,5 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {OrderService} from "./orderservice";
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {FormGroup} from "@angular/forms";
 import {Order} from "./order";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -7,7 +6,10 @@ import {ProductService} from "../../product/productservice";
 import {RestfullService} from "../../shared/services/restfullService";
 import {CartItem} from "./cart-item";
 import {ArticlesPubSubService} from "./service/articles-pub-sub.service";
-import {Cart} from "../dashboard/cart";
+import {CartService} from "../../shared/services/cart-service";
+import {CartItemDialogComponent} from "./cart-item-dialog/dialog.component";
+import {Contact} from "../contacts/contact";
+import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
     selector: 'app-order',
@@ -15,9 +17,9 @@ import {Cart} from "../dashboard/cart";
     styleUrls: ['./order.component.scss'],
 })
 export class OrderComponent implements OnInit {
-
+    index = 0;
     private datas: any;
-    private cartId: any;
+    cartId: number;
     cartItems: CartItem[];
     current = "test";
     private log: string = '';
@@ -35,11 +37,15 @@ export class OrderComponent implements OnInit {
     @Input() price: number = 0;
     @Input() id: number = 0;
 
+    @Input() contact: Contact = new Contact();
+
 
     selected = null;
 
 
     patientForm: FormGroup;
+
+    // serial=0;
 
 
     // @Input() order: OrderComponent;
@@ -48,10 +54,11 @@ export class OrderComponent implements OnInit {
     private showForm: boolean = false;
 
 
-    // @ViewChild()
+    @ViewChild(CartItemDialogComponent)
+    localDialog:CartItemDialogComponent
 
 
-    constructor(private aps: ArticlesPubSubService, private router: Router, private route: ActivatedRoute, private orderService: OrderService, private productService: ProductService,
+    constructor(private aps: ArticlesPubSubService, private router: Router, private route: ActivatedRoute, private orderService: CartService, private productService: ProductService,
                 private restfullService: RestfullService) {
         this.route.params.subscribe(params => {
             this.cartId = +params['id'];
@@ -62,14 +69,20 @@ export class OrderComponent implements OnInit {
     }
 
     getAllCartItems() {
-        this.restfullService.getbyId(this.requestUrl1 + '/' + this.cartId).subscribe(data =>{ this.cartItems = data.data.items,
-            console.log(this.cartItems);
+        this.restfullService.getbyId(this.requestUrl1 + '/' + this.cartId).subscribe(data => {
+            this.cartItems = data.data.items;
+
+
+
+            console.log("hero")
         });
 
     }
 
 
     ngOnInit() {
+       this.localDialog.visible=false;
+
         this.aps.subscribe(value => {
             if (value) {
 
@@ -150,7 +163,40 @@ export class OrderComponent implements OnInit {
 
 
         }*/
-    cartList: Cart[] = [];
 
 
+    updateCartItem(id, quantity,price) {
+
+        let hero = new CartItem();
+        hero.id = id;
+        hero.quantity = quantity;
+        hero.price=price;
+
+
+        this.restfullService.create("http://localhost:8080/v1/billing/cart-items", JSON.stringify(hero))
+            .subscribe(
+                suc => {
+                    console.log("hero", suc.json().message);
+                    alert(suc.json().message);
+                },
+                err => {
+                    console.log(err);
+                }
+            );
+    }
+
+    deleteCart(item: CartItem) {
+
+    }
+
+    checkout(cartId: Number) {
+        alert(cartId);
+        this.localDialog.visible=true;
+
+    }
+
+    confirmCheckout() {
+        alert("confirming ");
+        this.localDialog.visible=true;
+    }
 }

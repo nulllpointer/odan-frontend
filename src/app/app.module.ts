@@ -9,13 +9,14 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {AuthGuard} from './shared';
 import {NgbDropdownModule} from "@ng-bootstrap/ng-bootstrap";
-import {CommonModule} from "@angular/common";
+import {CommonModule, DatePipe} from "@angular/common";
 import {PageHeaderModule} from "./shared/modules/page-header/page-header.module";
 import {ProductComponent} from './product/product.component';
 import {ProductService} from "./product/productservice";
 import {Createproductservice} from "./create-product/createproductservice.service";
 import { CollapsibleModule } from 'angular2-collapsible';
 import {RestfullService} from "./shared/services/restfullService";
+import {CartService} from "./shared/services/cart-service";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: Http) {
@@ -48,7 +49,7 @@ export function HttpLoaderFactory(http: Http) {
             }
         })
     ],
-    providers: [AuthGuard, ProductService, Createproductservice,RestfullService],
+    providers: [AuthGuard, ProductService, Createproductservice,RestfullService,CartService,DatePipe],
     bootstrap: [AppComponent]
 })
 export class AppModule {

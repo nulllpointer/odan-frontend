@@ -1,11 +1,11 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Http} from "@angular/http";
 import {RestfullService} from "../../../shared/services/restfullService";
 import {Category} from "../category";
 import {ActivatedRoute, Router} from "@angular/router";
 import {CartItem} from "../cart-item";
-import {OrderComponent} from "../order.component";
 import {ArticlesPubSubService} from "../service/articles-pub-sub.service";
+import {CartService} from "../../../shared/services/cart-service";
 
 @Component({
     selector: 'app-tabs',
@@ -23,7 +23,8 @@ export class TabsComponent implements OnInit {
 
     categories: Category[];
 
-    cartId:number;
+    cartId: number;
+
 
     /*@ViewChild(OrderComponent)
     orderComponent:OrderComponent*/
@@ -32,15 +33,14 @@ export class TabsComponent implements OnInit {
     }
 
 
-  /*  @ViewChild(OrderComponent)
-    private orderComponent: OrderComponent;*/
+    /*  @ViewChild(OrderComponent)
+      private orderComponent: OrderComponent;*/
 
-    constructor(private aps: ArticlesPubSubService,private restfullService: RestfullService, private http: Http, private router: Router, private route: ActivatedRoute) {
+    constructor(private aps: ArticlesPubSubService, private cartService: CartService, private restfullService: RestfullService, private http: Http, private router: Router, private route: ActivatedRoute) {
         this.getCategoriesWithProducts();
         this.route.params.subscribe(params => {
             this.cartId = +params['id'];
         });
-
 
 
     }
@@ -56,27 +56,36 @@ export class TabsComponent implements OnInit {
 
     addToCart(cartId, productId) {
 
-        let cItem=new CartItem();
-        cItem.cartId=cartId;
-        cItem.productId=productId;
+        this.restfullService.getbyId("http://localhost:8080/v1/billing/carts/" + this.cartId).subscribe(
+            cart => {
+
+                this.cartService.getProductPrice(productId, cart.data.txnDate).subscribe(
+                    productPrice => {
+
+                        let cItem = new CartItem();
+                        cItem.cartId = cartId;
+                        cItem.productPriceId = productPrice.id;
+                        cItem.txnDate = cart.data.txnDate;
 
 
-        var cartItem = JSON.stringify(cItem);
-        console.log(cartItem)
+                        var cartItem = JSON.stringify(cItem);
+                        console.log(cartItem)
 
-        this.restfullService.create(this.cartUrl,cartItem).subscribe(
-            suc => {
-                console.log("hero", suc.json().message);
-                this.aps.next(true);
-
-
+                        this.restfullService.create(this.cartUrl, cartItem).subscribe(
+                            suc => {
+                                console.log("hero", suc.json().message);
+                                this.aps.next(true);
 
 
-            },
-            err => {
-                console.log(err);
+                            },
+                            err => {
+                                console.log(err);
+                            }
+                        );
+                    }
+                );
+                console.log("I CANT SEE DATA HERE also: ");
             }
         );
-
     }
 }

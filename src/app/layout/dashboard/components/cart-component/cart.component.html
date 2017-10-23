@@ -19,8 +19,23 @@
                 </div>
             </div>
 
+
+            <!--date time picker-->
+            <div class=" form-group row">
+                <div class="col-md-11"><input name="sth" [(ngModel)]="cart.txnDate" matInput [matDatepicker]="picker" placeholder="enter date"></div>
+
+                <div class="col-md-1" >
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                </div>
+
+                <mat-datepicker #picker></mat-datepicker>
+            </div>
+
+
             <button (click)="createOrUpdateCart(cart)" name="something" class="btn btn-primary">Add Cart
             </button>
+
+
             <button type="reset" type="reset" class="btn btn-secondary">Reset Button</button>
         </form>
 
@@ -44,6 +59,7 @@
                     <div class="col col-xs-9 text-right">
                         <div class="d-block huge">124</div>
                         <div class="d-block">{{cart.identifier}}</div>
+
                         <button class="btn-primary" (click)="updateCart()">Update</button>
                     </div>
                 </div>
@@ -73,6 +89,7 @@
             <div class="card card-inverse card-success">
                 <div class="card-header">
                     <div class="row">
+                        <div class="card-block"><b><div class="my_cart_header">{{cart.identifier}}</div></b></div>
                         <div class="col col-xs-3">
                             <i class="fa fa-shopping-cart fa-5x"></i>
                         </div>
@@ -80,12 +97,14 @@
                             <div class="d-block huge">124</div>
 
                             <div class="d-block">{{cart.identifier}}</div>
+
+
                             <button class="btn-primary" (click)="updateCart(cart)">Update</button>
                         </div>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <a class="float-left" [routerLink]="['/order',cart.id]"  routerLinkActive="active">View Items </a>
+                    <a class="float-left" [routerLink]="['/order',cart.id]" routerLinkActive="active">View Items </a>
                     <a href="javascript:void(0)" class="float-right card-inverse">
                         <span><i class="fa fa-arrow-circle-right"></i></span>
                     </a>
