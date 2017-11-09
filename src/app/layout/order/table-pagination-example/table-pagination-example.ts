@@ -76,7 +76,7 @@ export interface ContactData {
 
 /** An example database that the data source uses to retrieve data for the table. */
 export class ExampleDatabase {
-    private requestUrl = "http://localhost:8080/v1/billing/contacts";
+    private requestUrl = "http://localhost:8080/v1/billing/sales";
 
 
     contactData: ContactData[];
@@ -126,7 +126,7 @@ export class ExampleDatabase {
             phone: Math.round(Math.random() * 100).toString(),
 
             color: COLORS[Math.round(Math.random() * (COLORS.length - 1))],
-            contacts: this.contacts
+            sales: this.sales
         };*/
         return {
             id: hero.id,

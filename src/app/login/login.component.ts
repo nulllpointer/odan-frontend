@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
 
         console.log(hero.email)
 
-        if (hero.username=="Odan" && hero.phone=="9999")
+        if (hero.username=="admin" && hero.password=="admin")
         {localStorage.setItem('isLoggedin', 'true');
         alert("u are logged")
         }else {

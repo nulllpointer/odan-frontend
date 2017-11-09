@@ -16,16 +16,16 @@ export class ProductService {
 
 
     private baseUrl = 'http://localhost:8080';
-    private baseUrl1 = 'http://localhost:8080/all/product';
-    private baseUrl2 = 'http://localhost:8080/all/product';
+    private baseUrl1 = 'http://localhost:8080/all/purchase';
+    private baseUrl2 = 'http://localhost:8080/all/purchase';
 
 
     constructor(private http: Http) {
         let test = {"search": "person"};
     //    var her = new Hero();
-        /* let id=this.product.id;
-         let name=this.product.name;
-         let price=this.product.price;
+        /* let id=this.purchase.id;
+         let name=this.purchase.name;
+         let price=this.purchase.price;
          */
 
     }
@@ -37,7 +37,7 @@ export class ProductService {
         console.log(body);
 
         return this.http
-            .post("http://localhost:8080/all/product", body, this.options)
+            .post("http://localhost:8080/all/purchase", body, this.options)
             .toPromise()
             .catch(this.handleError);
 

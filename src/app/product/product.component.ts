@@ -27,7 +27,7 @@ export class ProductComponent implements OnInit {
 
 
 
-    private heroesUrl: "http://localhost:8080/all/product";
+    private heroesUrl: "http://localhost:8080/all/purchase";
     results: string[];
     private values: any[];
     herooo: Product[];

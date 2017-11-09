@@ -18,8 +18,8 @@ export class MenuComponent implements OnInit {
     order: any
 
     today: number = Date.now();
-    private requestUrl = 'http://localhost:8080/v1/billing/products';
-    categoryrequestUrl = 'http://localhost:8080/v1/billing/categories';
+    private requestUrl = 'http://localhost:8080/v1/billing/purchases';
+    categoryrequestUrl = 'http://localhost:8080/v1/billing/sales';
 
     @Input() product: Product = new Product();
     @Input() category: Category = new Category();
@@ -95,7 +95,7 @@ export class MenuComponent implements OnInit {
         var productjson = JSON.stringify(product);
 
 
-//        var productjson = JSON.stringify(this.product);
+//        var productjson = JSON.stringify(this.purchase);
 
         this.restfullService.create(this.requestUrl, productjson).subscribe(
             suc => {

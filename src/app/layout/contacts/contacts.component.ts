@@ -18,8 +18,8 @@ export class ContactsComponent implements OnInit {
     private datas: any;
 
     today: number = Date.now();
-    private requestUrl = 'http://localhost:8080/v1/billing/contacts';
-    private deleteRequestUrl = 'http://localhost:8080/v1/billing/contacts/delete';
+    private requestUrl = 'http://localhost:8080/v1/billing/sales';
+    private deleteRequestUrl = 'http://localhost:8080/v1/billing/sales/delete';
 
     results: string[];
     private values: any[];
@@ -37,7 +37,7 @@ export class ContactsComponent implements OnInit {
 
 
     constructor(private restfullService: RestfullService, private http: Http, private dialogcomponent: DialogComponent) {
-       // this.restfullService.getAll(this.requestUrl).subscribe(data => this.contacts = data.contacts);
+       // this.restfullService.getAll(this.requestUrl).subscribe(data => this.sales = data.sales);
     }
 
     ngOnInit(): void {

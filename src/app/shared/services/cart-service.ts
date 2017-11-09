@@ -19,9 +19,6 @@ export class CartService {
 
     }
 
-
-
-
     getProductPrice(productId, txnDate): Observable<any> {
 
         return this.http.get(`http://localhost:8080/v1/billing/product-price?productId=${productId}&txnDate=${txnDate}`).map((res: Response) => res.json().data);

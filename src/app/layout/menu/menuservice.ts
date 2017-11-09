@@ -16,16 +16,16 @@ export class MenuService {
 
 
     private baseUrl = 'http://localhost:8080';
-    private baseUrl1 = 'http://localhost:8080/all/product';
-    private baseUrl2 = 'http://localhost:8080/all/product';
+    private baseUrl1 = 'http://localhost:8080/all/purchase';
+    private baseUrl2 = 'http://localhost:8080/all/purchase';
 
 
     constructor(private http: Http) {
         let test = {"search": "person"};
         var her = new Product();
-        /* let id=this.product.id;
-         let name=this.product.name;
-         let price=this.product.price;
+        /* let id=this.purchase.id;
+         let name=this.purchase.name;
+         let price=this.purchase.price;
          */
 
     }
@@ -36,14 +36,14 @@ export class MenuService {
         let body = JSON.stringify(heros);
         console.log(body);
         return this.http
-            .post("http://localhost:8080/all/product", body, this.options)
+            .post("http://localhost:8080/all/purchase", body, this.options)
             .toPromise()
             .catch(this.handleError);
 
     }
 
  getAllProducts(): Promise <Product[]> {
-        return this.http.get("http://localhost:8080/v1/billing/sales")
+        return this.http.get("http://localhost:8080/v1/billing/sale-data-table")
             .toPromise()
             .then(response => response.json() as Product[])
             .catch(this.handleError);

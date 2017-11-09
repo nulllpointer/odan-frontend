@@ -1,0 +1,74 @@
+<div class="example-container mat-elevation-z8">
+
+    <mat-table #table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> ID</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.id}}</mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="txnDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Transaction Date</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.txnDate}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="discountType">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Discount type</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.discountType}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="discount">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Discount</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.discount}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="taxRate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Tax rate</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.taxRate}}</mat-cell>
+        </ng-container>
+
+
+
+        <ng-container matColumnDef="contactName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Contact</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.contactName}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="txnStatus">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Txn status</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.txnStatus}}</mat-cell>
+        </ng-container>
+
+
+
+        <ng-container matColumnDef="serviceChargeRate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Service Charge %</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.serviceChargeRate}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="amount">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Amount</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.amount}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="cashReceived">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Cash received</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.cashReceived}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="due">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Due</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.due}}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator #paginator
+                   [length]="exampleDatabase.data.length"
+                   [pageIndex]="0"
+                   [pageSize]="25"
+                   [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
+</div>
+

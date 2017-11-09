@@ -15,10 +15,11 @@ const routes: Routes = [
             { path: 'components', loadChildren: './bs-component/bs-component.module#BsComponentModule' },
             { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' },
             { path: 'menu', loadChildren: './menu/menu.module#MenuModule' },
-            { path: 'contacts', loadChildren: './contacts/contacts.module#ContactsModule' },
+           /* { path: 'sales', loadChildren: './sales/sales.module#ContactsModule' },*/
             { path: 'order/:id', loadChildren: './order/order.module#OrderModule' },
             { path: 'users', loadChildren: './users/users.module#UsersModule' },
-            { path: 'users', loadChildren: './users/users.module#UsersModule' },
+            { path: 'purchases', loadChildren: './purchase/purchase.module#PurchaseModule' },
+            { path: 'sales', loadChildren: './sale/sale.module#SaleModule' },
 
 
 

@@ -27,7 +27,7 @@ export class ContactsDataTable {
     dataSource: ExampleDataSource | null;
     users: User[];
     @Input() contact: Contact = new Contact();
-    private requestUrl = 'http://localhost:8080/v1/billing/contacts';
+    private requestUrl = 'http://localhost:8080/v1/billing/sales';
 
     constructor(private restfullService: RestfullService, private contactsComponent: ContactsComponent) {
         this.exampleDatabase = new ExampleDatabase(restfullService);
@@ -69,7 +69,7 @@ export interface UserData {
 
 
 export class ExampleDatabase {
-    private requestUrl = 'http://localhost:8080/v1/billing/contacts';
+    private requestUrl = 'http://localhost:8080/v1/billing/sales';
 
 
     userData: UserData[];
@@ -89,7 +89,7 @@ export class ExampleDatabase {
     constructor(restfullService) {
 
         restfullService.getAll(this.requestUrl).subscribe(data => {
-            this.users = data.contacts
+            this.users = data.sales
             console.log("one", data);
             for (let hero of this.users) {
                 this.addUser(hero);

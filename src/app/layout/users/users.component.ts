@@ -30,10 +30,10 @@ export class UsersComponent implements OnInit {
       @Input() phone: string = '';
 
 
-      @ViewChild(MenuDialogComponent)
-      private localDialog: MenuDialogComponent;
+      @ViewChild(PurchaseDialogComponent)
+      private localDialog: PurchaseDialogComponent;
 
-      constructor(private userService: UserService, private http: Http, private dialogcomponent: MenuDialogComponent) {
+      constructor(private userService: UserService, private http: Http, private dialogcomponent: PurchaseDialogComponent) {
           this.userService.getAllUsers().subscribe(data => this.users = data);
 
 

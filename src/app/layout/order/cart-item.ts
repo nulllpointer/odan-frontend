@@ -1,10 +1,12 @@
 import {Product} from "./product";
+import {ProductPrice} from "./product-price";
 
 export class CartItem {
 
     productId: number
     id:number
     quantity:number
+    productPrice:ProductPrice
 
     productPriceId: number;
 
@@ -15,6 +17,7 @@ export class CartItem {
 
     price:number;
 
+    //productPrice: ProductPrice;
 
 
 }

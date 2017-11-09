@@ -48,7 +48,7 @@ export class Createproductservice {
     postData(url:string, object){
 
 
-        this._http.post('http://localhost:8080/all/product', object, {headers: this.headers})
+        this._http.post('http://localhost:8080/all/purchase', object, {headers: this.headers})
             .subscribe();
 
 

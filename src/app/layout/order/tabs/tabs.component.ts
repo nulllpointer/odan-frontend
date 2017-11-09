@@ -8,7 +8,7 @@ import {ArticlesPubSubService} from "../service/articles-pub-sub.service";
 import {CartService} from "../../../shared/services/cart-service";
 
 @Component({
-    selector: 'app-tabs',
+    selector: 'order-tab',
     templateUrl: './tabs.component.html',
     styleUrls: ['./tabs.component.scss']
 
@@ -22,6 +22,10 @@ export class TabsComponent implements OnInit {
     private cartUrl = "http://localhost:8080/v1/billing/cart-items"
 
     categories: Category[];
+    snackCategories: Category[];
+    drinksCategories: Category[];
+    khanaAndKhajaCategories: Category[];
+
 
     cartId: number;
 
@@ -37,7 +41,7 @@ export class TabsComponent implements OnInit {
       private orderComponent: OrderComponent;*/
 
     constructor(private aps: ArticlesPubSubService, private cartService: CartService, private restfullService: RestfullService, private http: Http, private router: Router, private route: ActivatedRoute) {
-        this.getCategoriesWithProducts();
+        this.getAllProducts();
         this.route.params.subscribe(params => {
             this.cartId = +params['id'];
         });
@@ -45,11 +49,15 @@ export class TabsComponent implements OnInit {
 
     }
 
-    private getCategoriesWithProducts() {
+    private getAllProducts() {
 
 
-        this.restfullService.getAll(this.requestUrl,).subscribe(data => {
-            this.categories = data.categorys
+        this.restfullService.getAll(this.requestUrl).subscribe(data => {
+            this.categories = data.categories;
+            this.snackCategories = this.categories.filter(cat => cat.principalCategoryType === "SNACKS");
+            this.drinksCategories = this.categories.filter(cat => cat.principalCategoryType === "DRINKS");
+            this.khanaAndKhajaCategories = this.categories.filter(cat => cat.principalCategoryType === "KHANA_KHAJA");
+
 
         });
     }

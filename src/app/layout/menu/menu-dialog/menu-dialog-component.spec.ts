@@ -3,7 +3,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MenuDialogComponent} from "./menu-dialog-component";
 
 
-describe('MenuDialogComponent', () => {
+describe('PurchaseDialogComponent', () => {
   let component: MenuDialogComponent;
   let fixture: ComponentFixture<MenuDialogComponent>;
 

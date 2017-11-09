@@ -3,7 +3,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MenuDataTable} from "./menu-data-table";
 
 
-describe('MenuDataTable', () => {
+describe('PurchaseDataTable', () => {
   let component: MenuDataTable;
   let fixture: ComponentFixture<MenuDataTable>;
 

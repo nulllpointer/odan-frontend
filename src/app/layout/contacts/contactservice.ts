@@ -31,17 +31,17 @@ export class ContactService {
 
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this.http.post('http://localhost:8080/v1/billing/contacts', heros);
+        return this.http.post('http://localhost:8080/v1/billing/sales', heros);
     }
 
     getAllContacts(): Observable<any> {
-        return this.http.get('http://localhost:8080/v1/billing/contacts').map((res: Response) => res.json());
+        return this.http.get('http://localhost:8080/v1/billing/sales').map((res: Response) => res.json());
 
     }
 
     getContact(name, email): Observable<any> {
 
-        return this.http.get(`http://localhost:8080/v1/billing/contacts?firstName=${name}&email=${email}`).map((res: Response) => res.json().contacts);
+        return this.http.get(`http://localhost:8080/v1/billing/contacts?firstName=${name}&email=${email}`).map((res: Response) => res.json().sales);
 
     }
 

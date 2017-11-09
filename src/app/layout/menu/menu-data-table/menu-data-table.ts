@@ -55,7 +55,7 @@ export class ExampleDatabase {
     productData: ProductData[];
 
     products: Product[];
-    private requestUrl = 'http://localhost:8080/v1/billing/products';
+    private requestUrl = 'http://localhost:8080/v1/billing/purchases';
     /** Stream that emits whenever the data has been modified. */
     dataChange: BehaviorSubject<ProductData[]> = new BehaviorSubject<ProductData[]>([]);
 
@@ -67,12 +67,12 @@ export class ExampleDatabase {
     constructor(restfullService) {
 
         restfullService.getAll(this.requestUrl).subscribe(data => {
-            this.products = data.products
+            this.products = data.purchases
             console.log("one", data);
             for (let hero of this.products) {
                 this.addProduct(hero);
             }
-            console.log("product", this.products)
+            console.log("purchase", this.products)
 
         });
 

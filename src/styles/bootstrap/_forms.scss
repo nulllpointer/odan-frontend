@@ -104,6 +104,8 @@ select.form-control {
   padding-top: calc(#{$input-padding-y-lg} - #{$input-btn-border-width} * 2);
   padding-bottom: calc(#{$input-padding-y-lg} - #{$input-btn-border-width} * 2);
   font-size: $font-size-lg;
+    font-weight: bold;
+    color: black;
 }
 
 .col-form-label-sm {
@@ -385,4 +387,9 @@ select.form-control-lg {
       top: 0;
     }
   }
+}
+
+
+.example-margin{
+    margin-left: 10px;
 }

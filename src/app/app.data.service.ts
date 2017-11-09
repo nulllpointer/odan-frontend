@@ -12,8 +12,8 @@ export class TablesService {
 
 
     private baseUrl = 'http://localhost:8080';
-    private baseUrl1 = 'http://localhost:8080/all/product/new';
-    private baseUrl2 = 'http://localhost:8080/all/product';
+    private baseUrl1 = 'http://localhost:8080/all/purchase/new';
+    private baseUrl2 = 'http://localhost:8080/all/purchase';
 
 
     constructor(private http: Http, private location: Location) {
@@ -48,7 +48,7 @@ export class TablesService {
 
 
     getAllDBHeroes(): Promise <Hero[]> {
-        return this.http.get(this.baseUrl + '/all/product')
+        return this.http.get(this.baseUrl + '/all/purchase')
             .toPromise()
             .then(response => response.json() as Hero[])
             .catch(this.handleError);

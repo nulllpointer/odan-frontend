@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-8">
-        <app-tabs></app-tabs>
+        <order-tab></order-tab>
     </div>
     <div class="col-md-4 ">
 
@@ -23,14 +23,19 @@
 
                 <th scope="row">{{cartItems.indexOf(item)+1}}</th>
                 <td>{{item.productPrice.product.title}}</td>
-                <td>{{item.productPrice.price}}</td>
                 <td>
-                    <form><input [(ngModel)]="item.quantity" type="number" name="some3"
-                                 placeholder="Qty">
+                    <form><input [(ngModel)]="item.price" type="text" name="some3"
+                                 placeholder="Price" value="item.price">
                     </form>
                 </td>
+
                 <td>
-                    <button (click)="updateCartItem(item.id,item.quantity)">
+                    <input [(ngModel)]="item.quantity" type="number" name="some3"
+                           placeholder="Qty">
+
+                </td>
+                <td>
+                    <button (click)="updateCartItem(item.id,item.quantity,item.price)">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </button>
                 </td>
@@ -64,23 +69,91 @@
 
                     <th scope="row">{{cartItems.indexOf(item)+1}}</th>
                     <td>{{item.productPrice.product.title}}</td>
-                    <td>{{item.productPrice.price}}</td>
+                    <td>{{item.price}}</td>
                     <td>{{item.quantity}}</td>
 
                 </tr>
+
+
                 </tbody>
             </table>
-            <button (click)="confirmCheckout()" name="something" class="btn btn-primary">Confirm
-            </button>
-            <button type="reset" type="reset" class="btn btn-secondary">Reset Button</button>
+            <form>
+                <div class="row right " style="margin-right: 30px">
+                    <button (click)="confirmCheckout(cartOrder)" name="something" class="btn btn-primary">Confirm
+                    </button>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <label class="col-sm-2 col-form-label col-form-label-lg">Cash received:</label>
+                        <input class="col-sm-2" [(ngModel)]="cartOrder.cashReceived"  (ngModelChange)="calculateTheChange($event)" type="text" name="some3"
+                               placeholder="Cash received">
+                       <span style="color: red;">{{cartOrder.dueAmount}}</span>
 
+                    </div>
+                    <div class="col-md-4">
+                        <label class="simple-label"> &nbsp;Total:</label><span class="nice-label">{{cartOrder.total}}</span>
+                        <br>
+                        <label class="simple-label">- Discount:</label><span class="nice-label">{{cartOrder.discountValue}}</span>
+                        <br>
+                        <label class="simple-label">+ Service Charge: </label><span class="nice-label">{{cartOrder.serviceChargeValue}}</span>
+                        <br>
+                        <label class="simple-label">+ VAT:</label><span class="nice-label">{{cartOrder.taxValue}}</span>
+                        <br>
+                        <label class="simple-label" style="font-size: 20px">+ Grand Total</label><span class="nice-label" style="color: green; font-size: 20px">{{cartOrder.grandTotal}}</span>
+
+
+                    </div>
+                </div>
+
+
+                <label class="col-sm-2 col-form-label col-form-label-lg">Customers</label>
+
+
+                <mat-form-field>
+                    <mat-select class="form-control" placeholder="All Customers" #t (change)="callContact(t.value)"
+                                name="name">
+                        <mat-option *ngFor="let hero of contacts" [value]="hero.id">{{hero.firstName}}</mat-option>
+                    </mat-select>
+
+
+                </mat-form-field>
+
+
+                <label class="col-sm-2 col-form-label col-form-label-lg">Txn Status:</label>
+
+
+                <mat-radio-group class="col-sm-2" [(ngModel)]="cartOrder.txnStatus" (ngModelChange)="calculateTheChange($event)" name="ds">
+                    <mat-radio-button class="example-margin" value="cash">Cash</mat-radio-button>
+                    <mat-radio-button class="example-margin" value="due">Due</mat-radio-button>
+                </mat-radio-group>
+
+                <br>
+                <label class="col-sm-2 col-form-label col-form-label-lg">Discount type:</label>
+                <mat-radio-group class="col-sm-2" [(ngModel)]="cartOrder.discountType" name="fs">
+                    <mat-radio-button class="example-margin" value="amount">Amount</mat-radio-button>
+                    <mat-radio-button class="example-margin" value="percentage">Percentage</mat-radio-button>
+                </mat-radio-group>
+
+
+                <label class="col-md-2 col-form-label col-form-label-lg">Discount:</label>
+                <input class="col-sm-2" [(ngModel)]="cartOrder.discount" (ngModelChange)="calculateTheChange($event)" type="text" name="some3"
+                       placeholder="Enter discount">
+                <br>
+                <label class="col-sm-2 col-form-label col-form-label-lg">Service charge rate:</label>
+                <input class="col-sm-2" [(ngModel)]="cartOrder.serviceChargeRate"  (ngModelChange)="calculateTheChange($event)"  type="text" name="some3"
+                       placeholder="Enter service charge">
+                <label class="col-sm-2 col-form-label col-form-label-lg">Tax rate:</label>
+                <input class="col-sm-2" [(ngModel)]="cartOrder.taxRate"  (ngModelChange)="calculateTheChange($event)"  type="text" name="some3"
+                       placeholder="Enter tax rate">
+
+
+            </form>
 
         </cart-item-dialog>
 
 
     </div>
 </div>
-
 
 
 <!--<app-cart></app-cart>-->
