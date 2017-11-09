@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-4 push-md-4">
             <img src="assets/images/logo.png" width="150px" class="user-avatar" />
-            <h1>SB Admin BS4 Angular4</h1>
+            <h1>ODAN CAFE</h1>
             <form #signupForm="ngForm" (ngSubmit)="onLoggedin(signupForm)">
                 <div class="form-content">
                     <div class="form-group">
@@ -12,7 +12,7 @@
                             <input type="text" class="form-control" id="name"
                                    required
                                    pattern="[a-zA-Z][a-zA-Z ]+"
-                                   [(ngModel)]="user.username" name="name"
+                                   [(ngModel)]="user.userName" name="name"
                                    #name="ngModel">
                             <div [hidden]="name.valid || name.pristine"
                                  class="alert alert-danger">
@@ -29,7 +29,7 @@
 
                             <input type="password" class="form-control" id="password"
                                    required
-                                   [(ngModel)]="user.password" name="password"
+                                   [(ngModel)]="user.userPassword" name="password"
                                    #password="ngModel">
                             <div [hidden]="password.valid || password.pristine"
                                  class="alert alert-danger">
@@ -39,10 +39,12 @@
                         </div>
                     </div>
                 </div>
-                <a class="btn rounded-btn" (click)="onLoggedin(user)"> Log in </a>
-                &nbsp;
-                <a class="btn rounded-btn" [routerLink]="['/signup']">Register</a>
+                <a class="btn rounded-btn" [routerLink]="['/dashboard']" (click)="onLoggedin(user)"> Log in </a>
+                &nbsp;<a href="http://localhost:4201/signup" class="btn rounded-btn">Register</a>
             </form>
         </div>
     </div>
+
+
+
 </div>

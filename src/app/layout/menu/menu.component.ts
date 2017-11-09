@@ -76,6 +76,11 @@ export class MenuComponent implements OnInit {
     }
 
 
+
+
+
+
+
     getAllCategories() {
 
 
@@ -109,6 +114,31 @@ export class MenuComponent implements OnInit {
         );
 
     }
+
+    createOrUpdateCategory(category) {
+
+        var categoryjson = JSON.stringify(category);
+
+
+//        var productjson = JSON.stringify(this.product);
+
+        this.restfullService.create(this.categoryrequestUrl, categoryjson).subscribe(
+            suc => {
+                console.log("hero", suc.json().message);
+                alert(suc.json().message);
+                location.reload();
+            },
+            err => {
+                console.log(err);
+            }
+        );
+
+    }
+
+
+
+
+
 
     getProductById(id) {
 

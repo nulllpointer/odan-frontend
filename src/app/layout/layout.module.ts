@@ -9,6 +9,7 @@ import { HeaderComponent, SidebarComponent } from '../shared';
 import {RestfullService} from "../shared/services/restfullService";
 import { OrderprocessComponent } from './orderprocess/orderprocess.component';
 import { TestComponent } from './test/test.component';
+import {AuthGuard} from "../shared/guard/auth.guard";
 
 @NgModule({
     imports: [
@@ -24,7 +25,9 @@ import { TestComponent } from './test/test.component';
         SidebarComponent,
         OrderprocessComponent,
         TestComponent,
+
     ],
+
 
 })
 export class LayoutModule { }

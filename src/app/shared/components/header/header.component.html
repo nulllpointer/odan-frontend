@@ -52,7 +52,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <a href="/products" class="dropdown-item">Product Management </a>
-                        <a href="javascript:void(0)" class="dropdown-item">Offer Management </a>
+                        <a href="/login" class="dropdown-item">Login </a>
                         <a href="javascript:void(0)" class="dropdown-item">Menu and Price Management </a>
                     </ul>
                 </li>
@@ -102,8 +102,11 @@
 
 
                 <li class="nav-item my-nav-item" ngbDropdown>
-                    <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
-                        <i class="fa fa-user"></i> John Smith <b class="caret"></b>
+                    <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle >
+                        <!--<input [(ngModel)]="user.userPassword" name="password" type="password" class="form-control" id="password">-->
+
+
+                        <i class="fa fa-user"></i>Welcome! {{authenticatedUser}} <b class="caret"></b>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-fw fa-user"></i>
@@ -113,7 +116,7 @@
 
                         </a>
 
-                        <a class="dropdown-item" [routerLink]="['/logout']"><i
+                        <a class="dropdown-item" (click)="logout()"><i
                             class="fa fa-fw fa-power-off"></i> Log Out </a>
                     </div>
                 </li>

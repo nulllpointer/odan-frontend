@@ -39,14 +39,9 @@ export class RestfullService {
 */
 
 
+    getUser(username, password): Observable<any> {
 
-
-
-
-    getContact(name, email): Observable<any> {
-
-        return this.http.get(`http://localhost:8080/v1/billing/contacts?firstName=${name}&email=${email}`).map((res: Response) => res.json().contacts);
-
+        return this.http.get(`http://localhost:8080/v1/billing/users?username=${username}&password=${password}`).map((res: Response) => res.json().users);
     }
 
     getbyId(url): Observable<any> {
@@ -57,8 +52,6 @@ export class RestfullService {
     deleteById(url:string): Observable<any>{
 
         return this.http.get(url).map((res: Response) => res.json().data);
-
-
 
     }
 

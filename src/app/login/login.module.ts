@@ -1,8 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { LoginRoutingModule } from './login-routing.module';
-import { LoginComponent } from './login.component';
 import {FormControlDirective, FormGroupDirective, FormsModule} from "@angular/forms";
 import {
     MatAutocompleteModule,
@@ -15,6 +13,8 @@ import {
     MatProgressSpinnerModule, MatRippleModule, MatSelectModule, MatSliderModule, MatSidenavModule, MatSlideToggleModule,
     MatTableModule, MatSortModule, MatRadioModule, MatSnackBarModule, MatToolbarModule, MatTooltipModule, MatTabsModule,
 } from "@angular/material";
+import {LoginRoutingModule} from "./login-routing.module";
+import {LoginComponent} from "./login.component";
 
 @NgModule({
     imports: [
