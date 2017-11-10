@@ -13,8 +13,8 @@ export class User {
     postalCode: string;
     details: string;
     type: string;
-    username: string;
-    password: string;
+    userName: string;
+    userPassword: string;
     cash:number;
     credit: number;
 

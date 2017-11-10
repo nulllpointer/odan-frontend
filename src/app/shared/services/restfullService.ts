@@ -55,6 +55,11 @@ export class RestfullService {
 
     }
 
+    getUser(username, password): Observable<any> {
+
+        return this.http.get(`http://localhost:8080/v1/billing/users?username=${username}&password=${password}`).map((res: Response) => res.json().users);
+    }
+
 
     getbyId(url): Observable<any> {
         return this.http.get(url).map((res: Response) => res.json());
@@ -65,8 +70,6 @@ export class RestfullService {
 
         return this.http.get(url).map((res: Response) => res.json().data);
 
-
     }
-
 
 }

@@ -1,8 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
 import {routerTransition} from "../router.animations";
 import {User} from "../layout/users/user";
 import {FormControl, Validators} from "@angular/forms";
+import {RestfullService} from "../shared/services/restfullService";
 
 @Component({
     selector: 'app-login',
@@ -11,7 +12,9 @@ import {FormControl, Validators} from "@angular/forms";
     animations: [routerTransition()]
 })
 export class LoginComponent implements OnInit {
+    private heroesUrl = "http://localhost:8080/v1/security/login";
     @Input() user: User = new User();
+    users: User[]
     hide = true;
     email = new FormControl('', [Validators.required, Validators.email]);
 
@@ -21,22 +24,50 @@ export class LoginComponent implements OnInit {
                 '';
     }
 
-    constructor(public router: Router) {
+    constructor(public router: Router, private restfullService: RestfullService) {
     }
 
     ngOnInit() {
     }
 
-    onLoggedin(hero) {
+    onLoggedin(user) {
+        console.log(user);
+        var checkuser = JSON.stringify(user);
+        this.restfullService.create(this.heroesUrl, checkuser).subscribe(
+            data => {
+                let body = data.text();
+                let userss=data.json();
+                console.log(userss);
+                console.log("I CANT SEE server sent user here", body);
 
-        console.log(hero.email)
+                if (body == "null") {
+                    alert("Incorrect Username/Password")
 
-        if (hero.username=="admin" && hero.password=="admin")
-        {localStorage.setItem('isLoggedin', 'true');
-        alert("u are logged")
-        }else {
-            this.getErrorMessage()
-        }
-         }
+
+                    localStorage.setItem("isLoggedin", 'false')
+
+                    this.router.navigate(['/login']);
+                }
+
+                else {
+                    localStorage.setItem('isLoggedin', 'true');
+                    this.user=userss.data
+
+                    localStorage.setItem("authenticatedUser",userss.data.firstName);
+                    localStorage.setItem("userType",userss.data.type);
+
+
+
+                    alert(userss.data.email);
+                    console.log(userss.data.email);
+
+                    this.router.navigate(['/dashboard']);
+
+                }
+            }
+        )
+    }
 
 }
+
+

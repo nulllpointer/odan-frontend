@@ -26,8 +26,7 @@ export class ProductComponent implements OnInit {
 
 
 
-
-    private heroesUrl: "http://localhost:8080/all/purchase";
+    private heroesUrl: "http://localhost:8080/all/product";
     results: string[];
     private values: any[];
     herooo: Product[];
@@ -52,12 +51,7 @@ export class ProductComponent implements OnInit {
 
 
     ngOnInit(): void {
-       // this.heroList.push(this.getProducts());
 
-       /* this.http.get('/api/items').subscribe(data => {
-            // Read the result field from the JSON response.
-            this.results = data['results'];
-*/
 
     }
 
@@ -76,22 +70,6 @@ export class ProductComponent implements OnInit {
         location.reload();
 
     }
-
-
-
-
-   /* getProducts(): Hero {
-
-
-        this.productService.getAllProducts()
-            .then(herooo => this.herooo = herooo);
-        let herooo = new Hero();
-
-        return herooo;
-
-
-    }
-*/
 }
 
 

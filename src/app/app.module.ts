@@ -17,6 +17,8 @@ import {Createproductservice} from "./create-product/createproductservice.servic
 import { CollapsibleModule } from 'angular2-collapsible';
 import {RestfullService} from "./shared/services/restfullService";
 import {CartService} from "./shared/services/cart-service";
+import {AuthGuardService} from "./shared/guard/auth.guard.service";
+import {LoginComponent} from 'app/login/login.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: Http) {
@@ -49,7 +51,7 @@ export function HttpLoaderFactory(http: Http) {
             }
         })
     ],
-    providers: [AuthGuard, ProductService, Createproductservice,RestfullService,CartService,DatePipe],
+    providers: [AuthGuard, ProductService, Createproductservice,RestfullService,CartService,DatePipe, AuthGuardService, LoginComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule {

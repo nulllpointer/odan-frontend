@@ -19,7 +19,7 @@ import {Category} from "../../order/category";
     templateUrl: 'menu-data-table.html',
 })
 export class MenuDataTable {
-    displayedColumns = ['productId','productTitle', 'productType', 'productCategory', 'principalproductCategory'];
+    displayedColumns = ['productId','productTitle', 'productType'];
     exampleDatabase: ExampleDatabase
     dataSource: ExampleDataSource | null;
     products: Product[];
