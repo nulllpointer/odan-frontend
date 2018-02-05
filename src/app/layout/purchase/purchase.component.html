@@ -81,15 +81,17 @@
                               </div>-->
 
 
-                            <mat-form-field class="example-full-width">
-                                <input  style="color: black" type="text" placeholder="Pick one" aria-label="Number" matInput
-                                       [formControl]="myControl" [matAutocomplete]="auto">
-                                <mat-autocomplete #auto="matAutocomplete">
-                                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                                        {{ option }}
-                                    </mat-option>
-                                </mat-autocomplete>
-                            </mat-form-field>
+                            <!--  <mat-form-field class="example-full-width" #a>
+                                  <input style="color: black" type="text" placeholder="Pick contact" aria-label="Number"
+                                         matInput
+                                         [formControl]="contactControl" [matAutocomplete]="auto">
+                                  <mat-autocomplete #auto="matAutocomplete">
+                                      <mat-option *ngFor="let hero of filteredContactOptions | async" [value]="hero">
+                                          {{ hero}}
+                                      </mat-option>
+                                  </mat-autocomplete>
+                              </mat-form-field>-->
+                            <br>
 
 
                             <div class="form-group">
@@ -109,14 +111,14 @@
                                 <label for="category" class="col-sm-2 col-form-label col-form-label-lg">
                                     Alert after:
                                 </label>
-                                <mat-form-field>
-                                    <mat-select class="form-control" placeholder="Time unit" #r
-                                                (change)="callTimeUnit(r.value)" name="name">
-                                        <mat-option *ngFor="let cont of timeUnitTypes" [value]="cont.value">{{
-                                            cont.viewValue }}
-                                        </mat-option>
-                                    </mat-select>
-                                </mat-form-field>
+                                <!--  <mat-form-field>
+                                      <mat-select class="form-control" placeholder="Time unit" #r
+                                                  (change)="callTimeUnit(r.value)" name="name">
+                                          <mat-option *ngFor="let cont of timeUnitTypes" [value]="cont.value">{{
+                                              cont.viewValue }}
+                                          </mat-option>
+                                      </mat-select>
+                                  </mat-form-field>-->
                             </div>
 
 
@@ -128,9 +130,39 @@
 
                                 <button type="reset" type="reset" class="btn btn-secondary">Reset</button>
                             </div>
+
+
                         </div>
-
-
+                        <div>
+                            <form>
+                                <mat-form-field name="hero" class="example-full-width" #a>
+                                    <input style="color: black" type="text" placeholder="Pick contact"
+                                           aria-label="Number" (ngModelChange)="inputContactChanged()"
+                                           matInput [formControl]="contactControl"
+                                           [matAutocomplete]="auto">
+                                    <mat-autocomplete #auto="matAutocomplete">
+                                        <mat-option id="one" *ngFor="let hero of contactsList" [value]="hero">
+                                            <div>{{ hero}}</div>
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </form>
+                        </div>
+                        <div>
+                            <form>
+                                <mat-form-field name="hero" class="example-full-width" #a>
+                                    <input style="color: black" type="text" placeholder="Pick time-unit"
+                                           aria-label="Number" (ngModelChange)="inputChanged()"
+                                           matInput
+                                           [formControl]="timeUnitControl" [matAutocomplete]="auto">
+                                    <mat-autocomplete #auto="matAutocomplete">
+                                        <mat-option id="two" *ngFor="let hero of timeUnitOptions" [value]="hero">
+                                            <div>{{ hero}}</div>
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </form>
+                        </div>
                     </div>
                 </form>
             </div>

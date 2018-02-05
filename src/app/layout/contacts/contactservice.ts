@@ -66,15 +66,15 @@ export class ContactService {
             id: 6,
             };
 
-        let options = new RequestOptionsArgs({
+        let timeUnitOptions = new RequestOptionsArgs({
             body: body,
             method: RequestMethod.Delete
         });
 
-        this.http.request('http://testAPI:3000/stuff', options)
+        this.http.request('http://testAPI:3000/stuff', timeUnitOptions)
             .subscribe((ok)=>{console.log(ok)});
 
-      return this.http.request(url, options);
+      return this.http.request(url, timeUnitOptions);
 
 
     }

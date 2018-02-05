@@ -52,7 +52,7 @@ export class CartComponent {
     }
 
     getAllCart() {
-        this.restfullService.getAll(this.requestUrl).subscribe(data => this.carts = data.carts);
+        this.restfullService.getAll(this.requestUrl).subscribe(data => this.carts = data.carts.filter(c=>c.cartStatus==='OPEN'));
 
     }
 

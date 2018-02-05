@@ -19,7 +19,7 @@ import {Category} from "../../order/category";
     templateUrl: 'menu-data-table.html',
 })
 export class MenuDataTable {
-    displayedColumns = ['productId','productTitle', 'productType'];
+    displayedColumns = ['productId', 'productTitle', 'productType'];
     exampleDatabase: ExampleDatabase
     dataSource: ExampleDataSource | null;
     products: Product[];
@@ -45,7 +45,7 @@ export interface ProductData {
     title: string
     productType: string
     category: Category
-    principalCategoryType:  string
+    principalCategoryType: string
 
 }
 
@@ -68,11 +68,9 @@ export class ExampleDatabase {
 
         restfullService.getAll(this.requestUrl).subscribe(data => {
             this.products = data.purchases
-            console.log("one", data);
             for (let hero of this.products) {
                 this.addProduct(hero);
             }
-            console.log("purchase", this.products)
 
         });
 
@@ -95,7 +93,6 @@ export class ExampleDatabase {
             productType: hero.productType,
             principalCategoryType: hero.principalCategoryType,
             category: hero.category
-
 
 
         };

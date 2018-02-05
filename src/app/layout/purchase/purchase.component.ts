@@ -7,7 +7,9 @@ import {Contact} from "../contacts/contact";
 import {PurchaseItem} from "./purchase-item";
 import {Product} from "../order/product";
 import {FormControl} from "@angular/forms";
-import {Observable} from 'rxjs';
+import {PurchaseDataTable} from "./purchase-data-table/purchase-data-table";
+import {HeroComponent} from "./purchase-dialog/hero.component";
+import { Observable } from 'rxjs/Observable';
 
 @Component({
     selector: 'app-menu-page',
@@ -15,6 +17,35 @@ import {Observable} from 'rxjs';
     styleUrls: ['./purchase.component.scss']
 })
 export class PurchaseComponent implements OnInit {
+
+
+
+    myControl = new FormControl();
+
+    country = [
+        new HeroComponent('United States'),
+        new HeroComponent('Canada'),
+        new HeroComponent('Brazil'),
+        new HeroComponent('India'),
+        new HeroComponent('China'),
+        new HeroComponent('Japan'),
+    ];
+
+    protected nationality = [
+        new HeroComponent('American'),
+        new HeroComponent('Canadian'),
+        new HeroComponent('Indian'),
+        new HeroComponent('Chinese'),
+        new HeroComponent('African'),
+        new HeroComponent('Japanese'),
+    ];
+
+
+    countryFilter: Observable<HeroComponent[]>;
+    nationalityfilter: Observable<HeroComponent[]>;
+
+
+
     selectedGame: Object = {};
     id: number
     private datas: any;
@@ -41,6 +72,7 @@ export class PurchaseComponent implements OnInit {
         {value: 'ML', viewValue: 'ML'},
         {value: 'GM', viewValue: 'GM'},
         {value: 'MUTHA', viewValue: 'MUTHA'},
+        {value: 'PIECE', viewValue: 'PIECE'},
         {value: 'FULL', viewValue: 'FULL'},
         {value: 'HALF', viewValue: 'HALF'},
         {value: 'QUARTER', viewValue: 'QUARTER'},
@@ -48,16 +80,18 @@ export class PurchaseComponent implements OnInit {
 
 
     ];
+     filteredTimeUnitOptions = new Observable;
+    filteredContactOptions= new Observable;
 
 
     timeUnitTypes = [
-        {value: 'hr', viewValue: 'hour'},
+        {value: 'hours', viewValue: 'hours'},
         {value: 'days', viewValue: 'days'}
     ];
 
 
-    /* @ViewChild(PurchaseDialogComponent)
-     private localDialog: PurchaseDialogComponent;*/
+    @ViewChild(PurchaseDialogComponent)
+    private dataTable: PurchaseDataTable;
 
 
     constructor(private restfullService: RestfullService, private http: Http) {
@@ -66,9 +100,17 @@ export class PurchaseComponent implements OnInit {
     ngOnInit() {
 
 
-        this.filteredOptions = this.myControl.valueChanges
+
+        this.filteredContactOptions = this.contactControl.valueChanges
             .startWith('')
-            .map(val => this.filter(val));
+            .map(val => this.filterContact(val));
+
+        this.filteredTimeUnitOptions = this.timeUnitControl.valueChanges
+            .startWith('')
+            .map(val => this.filterTimeUnit(val));
+
+        console.log(this.filteredTimeUnitOptions)
+        console.log(this.filteredContactOptions)
 
         this.visible = false;
 
@@ -84,20 +126,24 @@ export class PurchaseComponent implements OnInit {
     }
 
 
+
     getAllContacts() {
 
 
         this.restfullService.getAll(this.contactRequestUrl).subscribe(
             data => {
-
                 this.contacts = data.contacts;
+                this.contactsList = this.contacts.map(c => c.firstName);
             }
         );
     }
 
 
     createOrUpdatePurchase(purchase) {
-        alert("done");
+        console.log(this.contacts.find(c => c.firstName === this.contactControl.value));
+        var hero = this.contacts.find(c => c.firstName === this.contactControl.value);
+        purchase.contactId = hero.id;
+        purchase.timeUnit = this.contactControl.value;
 
         var productjson = JSON.stringify(purchase);
 
@@ -108,7 +154,8 @@ export class PurchaseComponent implements OnInit {
             suc => {
                 console.log("hero", suc.json().message);
                 alert(suc.json().message);
-                location.reload();
+                //Calling the constructor would eventually call the purchase list
+                this.dataTable = new PurchaseDataTable(this.restfullService);
             },
             err => {
                 console.log(err);
@@ -182,7 +229,7 @@ export class PurchaseComponent implements OnInit {
     }
 
     closeTheForm() {
-        alert(this.myControl.value)
+        alert(this.contactControl.value)
         this.visible = false;
     }
 
@@ -190,20 +237,62 @@ export class PurchaseComponent implements OnInit {
     /*Auto complete*/
 
 
-    myControl = new FormControl();
+    contactControl = new FormControl();
 
-    options = [
-        'One',
-        'Two',
-        'Three'
+    timeUnitControl = new FormControl();
+
+    timeUnitOptions = [
+        'days',
+        'hours'
     ];
-
-    filteredOptions: Observable<string[]>;
-
+    contactsList: string[];
 
 
-    filter(val: string): string[] {
-        return this.options.filter(option =>
-            option.toLowerCase().indexOf(val.toLowerCase()) === 0);
+
+
+
+    /*Trying*/
+
+
+    filterContact(val: string): string[] {
+        return  this.contactsList=this.contactsList.filter(option =>
+            option.toLowerCase().indexOf(val.toLowerCase()) === 0)
+
+    }
+
+    filterTimeUnit(val: string): string[] {
+        return this.timeUnitOptions.filter(hero =>
+            hero.toLowerCase().indexOf(val.toLowerCase()) === 0);
+    }
+
+
+    inputChanged() {
+        this.filterTimeUnit(this.timeUnitControl.value)
+    }
+
+    inputContactChanged() {
+        this.filterContact(this.contactControl.value)
+
+    }
+    filter(name: string): HeroComponent[] {
+
+        return this.country.filter(option => option.name.toLowerCase().indexOf(name.toLowerCase()) === 0),
+            this.nationality.filter(option => option.name.toLowerCase().indexOf(name.toLowerCase()) === 0);
+    }
+
+    displayFn(users?: HeroComponent): string | undefined {
+        return users ? users.name : undefined;
+    }
+}
+
+export class User {
+
+    id: number;
+    name: string;
+
+
+    constructor(id: number, name: string) {
+        this.id = id;
+        this.name = name;
     }
 }

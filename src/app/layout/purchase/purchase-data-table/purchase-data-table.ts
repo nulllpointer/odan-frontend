@@ -38,6 +38,11 @@ export class PurchaseDataTable {
 
     ngOnInit() {
         this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
+
+    }
+
+    showDataTable(){
+        this.ngOnInit();
     }
 }
 

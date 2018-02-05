@@ -43,7 +43,7 @@
                             {{category.title}}
                         </div>
                         <div class="row">
-                            <button class="btn-success my-button" (click)="addToCart(cartId,purchase.id)"
+                            <button class="btn-success my-button" (click)="addToCart(cartId,product.id)"
                                     style="cursor:pointer"
                                     *ngFor="let product of category.products">
                                 {{product.title}}
@@ -66,7 +66,7 @@
                             {{category.title}}
                         </div>
                         <div class="row">
-                            <button class="btn-success my-button" (click)="addToCart(cartId,purchase.id)"
+                            <button class="btn-success my-button" (click)="addToCart(cartId,product.id)"
                                     style="cursor:pointer"
                                     *ngFor="let product of category.products">
                                 {{product.title}}
