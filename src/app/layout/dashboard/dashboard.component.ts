@@ -70,6 +70,7 @@ export class DashboardComponent implements OnInit {
 
 
         this.restfullService.getAll(this.requestUrl).subscribe(data => this.carts = data.carts);
+        alert(this.carts)
 
         this.sliders.push({
             imagePath: 'assets/images/slider1.jpg',
