@@ -5,6 +5,7 @@
     font-size: 18px;
     font-color:green;
     padding-left: 15px;
+    margin-top: 14px;
 }
 
 .dropdown-toggle {
@@ -39,7 +40,7 @@
 // The dropdown menu
 .dropdown-menu {
     position: absolute;
-    top: 100%;
+    top: 71%;
     left: 0;
     z-index: $zindex-dropdown;
     display: none; // none by default, but block on "open" of the menu
@@ -56,6 +57,7 @@
     border: $dropdown-border-width solid $dropdown-border-color;
     @include border-radius($border-radius);
     @include box-shadow($dropdown-box-shadow);
+
 }
 
 // Dividers (basically an `<hr>`) within the dropdown
@@ -69,14 +71,16 @@
 .dropdown-item {
     display: block;
     width: 100%; // For `<button>`s
-    padding: 3px $dropdown-item-padding-x;
+    //padding: 3px $dropdown-item-padding-x;
+    padding: 0px 10px 0px 10px;
     clear: both;
     font-weight: $font-weight-normal;
     color: $dropdown-link-color;
     text-align: inherit; // For `<button>`s
     white-space: nowrap; // prevent links from randomly breaking onto new lines
     background: none; // For `<button>`s
-    border: 0; // For `<button>`s
+    border: 0;
+    line-height: 36px;// For `<button>`s
 
     @include hover-focus {
         color: $dropdown-link-hover-color;

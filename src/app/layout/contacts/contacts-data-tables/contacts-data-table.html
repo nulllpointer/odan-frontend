@@ -10,7 +10,7 @@
         <!-- Progress Column -->
         <ng-container matColumnDef="progress">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{row.email}}% </mat-cell>
+            <mat-cell *matCellDef="let row"> {{row.email}} </mat-cell>
         </ng-container>
 
         <!-- Name Column -->
@@ -27,14 +27,17 @@
         <ng-container matColumnDef="update">
             <mat-header-cell *matHeaderCellDef>Edit</mat-header-cell>
             <mat-cell *matCellDef="let row">
-                <button mat-mini-fab (click)="createOrUpdateContact(row.id)">Edit</button>
+                <a (click)="createOrUpdateContact(row.id)"><i class="fa fa-pencil-square-o" aria-hidden="true" style="color: red; cursor: pointer"></i>
+                </a>
             </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="delete">
             <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
             <mat-cell *matCellDef="let row">
-                <button mat-mini-fab (click)="deleteContact(row.id)" name="something">Delete</button>
+                <a (click)="deleteContact(row.id)" name="something"><i class="fa fa-trash" style="color: red; cursor: pointer"></i>
+
+                </a>
             </mat-cell>
         </ng-container>
 

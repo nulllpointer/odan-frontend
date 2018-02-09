@@ -1,0 +1,161 @@
+<!--
+<app-dialog [(visible)]="showDialog">
+
+    <div class="-address-book">
+        <form>
+            <div class="form-group row">
+                <label for="lgFormGroupInput1" class="col-sm-2 col-form-label col-form-label-lg">First
+                    Name</label>
+                <div class="col-sm-10">
+                    <input [(ngModel)]="contact.firstName" name="some1" class="form-control form-control-lg"
+                           id="lgFormGroupInput1" placeholder="Enter First Name">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="lgFormGroupInput2" class="col-sm-2 col-form-label col-form-label-lg">Last
+                    Name</label>
+                <div class="col-sm-10">
+                    <input [(ngModel)]="contact.lastName" name="some2" class="form-control form-control-lg"
+                           id="lgFormGroupInput2" placeholder="Enter Last Name">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="lgFormGroupInput3"
+                       class="col-sm-2 col-form-label col-form-label-lg">Email</label>
+                <div class="col-sm-10">
+                    <input [(ngModel)]="contact.email" type="email" name="some3" class="form-control form-control-lg"
+                           id="lgFormGroupInput3" placeholder="you@example.com">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="lgFormGroupInput"
+                       class="col-sm-2 col-form-label col-form-label-lg">Phone</label>
+                <div class="col-sm-10">
+                    <input [(ngModel)]="contact.phone" name="some4"
+                           class="form-control form-control-lg" id="lgFormGroupInput"
+                           placeholder="Phone Number">
+                </div>
+            </div>
+            <button (click)="createOrUpdateContact(contact)" name="something" class="btn btn-primary">Add Contact
+            </button>
+            <button type="reset" type="reset" class="btn btn-secondary">Reset Button</button>
+        </form>
+
+
+    </div>
+
+
+</app-dialog>
+-->
+
+<app-dialog-product [(visible)]="showDialog">
+
+    <div class="-address-book">
+        <form #signupForm="ngForm" (ngSubmit)="createOrUpdateProduct(product)">
+
+            <div class="form-group row">
+                <label for="lgFormGroupInput1" class="col-sm-2 col-form-label col-form-label-lg">
+                    Title
+                </label>
+                <div class="col-sm-10">
+
+
+                    <input type="text" class="form-control" id="name"
+                           required
+                           pattern="[a-zA-Z][a-zA-Z ]+"
+                           [(ngModel)]="product.title" name="title"
+                           #title="ngModel" ngModel>
+                    <div [hidden]="title.valid || title.pristine"
+                         class="alert alert-danger">
+                        <div [hidden]="!title.hasError('required')">Title is required</div>
+                        <div [hidden]="!title.hasError('pattern')">Only alphabets allowed</div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label for="lgFormGroupInput1" class="col-sm-2 col-form-label col-form-label-lg">
+                    Email
+                </label>
+                <div class="col-sm-10">
+
+                    <input type="text" class="form-control" id="emailaddress"
+                           required
+                           [(ngModel)]="product.description" name="email"
+                           pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                           #description="ngModel" ngModel>
+                    <div [hidden]="description.valid || description.pristine"
+                         class="alert alert-danger">
+                        <div [hidden]="!description.hasError('required')">Description is required</div>
+                        <div [hidden]="!description.hasError('pattern')">Description format should be
+                            <small><b>joe@abc.com</b></small>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!--  <div class="form-group row">
+                  <label for="lgFormGroupInput1" class="col-sm-2 col-form-label col-form-label-lg">Phone
+                  </label>
+                  <div class="col-sm-10">
+                      <input type="text" class="form-control" id="mobilenumber"
+                             required
+                             [(ngModel)]="contact.phone" name="mobilenumber"
+                             pattern="[0-9]*"
+                             minlength="10"
+                             maxlength="10"
+                             #mobile="ngModel" ngModel>
+                      <div [hidden]="mobile.valid || mobile.pristine"
+                           class="alert alert-danger">
+                          <div [hidden]="!mobile.hasError('minlength')">Mobile should be 10digit</div>
+                          <div [hidden]="!mobile.hasError('required')">Mobile is required</div>
+                          <div [hidden]="!mobile.hasError('pattern')">Should be only numbers</div>
+                      </div>
+                  </div>
+              </div>-->
+
+
+            <mat-radio-group class="form-group row">
+                <mat-radio-button value="user.cash">Cash</mat-radio-button>
+                <mat-radio-button value="user.credit">Credit</mat-radio-button>
+            </mat-radio-group>
+
+
+            <button type="submit" [disabled]="!signupForm.form.valid" name="something" class="btn btn-primary">Add user
+            </button>
+            <button type="reset" type="reset" class="btn btn-secondary">Reset Button</button>
+        </form>
+
+    </div>
+
+
+</app-dialog-product>
+
+
+<div class="card " align="center">
+    <!--<div class="card-header">Customer Details</div>
+    -->
+
+    <div class="card card-inverse" style="background-color: #333; border-color: #333;">
+        <div class="card-block">
+            <h3 class="card-title">Welcome to Customer Database</h3>
+            <p class="card-text">Please make necessary modifications</p>
+            <button (click)="showDialog = !showDialog" class="btn-primary">Add new product</button>
+
+        </div>
+    </div>
+    <br><br>
+
+</div>
+
+<products-data-table></products-data-table>
+
+
+
+
+
+

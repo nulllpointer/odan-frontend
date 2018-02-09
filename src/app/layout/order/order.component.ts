@@ -79,14 +79,14 @@ export class OrderComponent implements OnInit {
     getAllCartItems() {
         this.restfullService.getbyId(this.cartUrl + '/' + this.cartId).subscribe(data => {
             this.cartItems = data.data.items;
-            this.cartOrder.txnDate=data.data.txnDate;
+            this.cartOrder.txnDate = data.data.txnDate;
 
             this.cartOrder.calculate(this.cartItems);
         });
 
     }
 
-    getCartById(){
+    getCartById() {
         this.restfullService.getbyId(this.cartUrl + '/' + this.cartId).subscribe(data => {
             this.cartItems = data.data.items;
 
@@ -113,8 +113,7 @@ export class OrderComponent implements OnInit {
     cartItemList: CartItem[] = [];
 
 
-
-        updateCartItem(id, quantity, price) {
+    updateCartItem(id, quantity, price) {
 
         let hero = new CartItem();
         hero.id = id;
@@ -150,9 +149,8 @@ export class OrderComponent implements OnInit {
         hero = order;
         //setting the cart id
         hero.cartId = this.cartId;
-        hero.contactId=this.contactId;
-       // hero.cashReceived=
-
+        hero.contactId = this.contactId;
+        // hero.cashReceived=
 
 
         this.restfullService.create(this.salesUrl, JSON.stringify(hero))

@@ -67,13 +67,14 @@ export class TabsComponent implements OnInit {
         this.restfullService.getbyId("http://localhost:8080/v1/billing/carts/" + this.cartId).subscribe(
             cart => {
 
-                this.cartService.getProductPrice(productId, cart.data.txnDate).subscribe(
-                    productPrice => {
+                this.cartService.getProductById(productId).subscribe(
+                    product => {
 
                         let cItem = new CartItem();
                         cItem.cartId = cartId;
-                        cItem.productPriceId = productPrice.id;
+                        cItem.price = product.price;
                         cItem.txnDate = cart.data.txnDate;
+                        cItem.productId=product.id;
 
 
                         var cartItem = JSON.stringify(cItem);

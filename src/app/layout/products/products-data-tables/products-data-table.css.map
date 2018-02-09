@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,eAAe;AACf,kBAAmB;EACf,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,SAAS,EAAE,KAAK;;AAGpB,eAAgB;EACZ,UAAU,EAAE,IAAI;EAChB,OAAO,EAAE,IAAI;EACb,WAAW,EAAE,MAAM;EACnB,YAAY,EAAE,IAAI;EAClB,SAAS,EAAE,IAAI;;AAGnB,UAAW;EACP,QAAQ,EAAE,IAAI;EACd,UAAU,EAAE,KAAK",
+"sources": ["contacts-data-table.scss"],
+"names": [],
+"file": "contacts-data-table.css"
+}

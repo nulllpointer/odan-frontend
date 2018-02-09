@@ -22,7 +22,7 @@
             <tr *ngFor="let item of cartItems">
 
                 <th scope="row">{{cartItems.indexOf(item)+1}}</th>
-                <td>{{item.productPrice.product.title}}</td>
+                <td>{{item.product.title}}</td>
                 <td>
                     <form><input [(ngModel)]="item.price" type="text" name="some3"
                                  placeholder="Price" value="item.price">
@@ -68,7 +68,7 @@
                 <tr *ngFor="let item of cartItems">
 
                     <th scope="row">{{cartItems.indexOf(item)+1}}</th>
-                    <td>{{item.productPrice.product.title}}</td>
+                    <td>{{item.product.title}} </td>
                     <td>{{item.price}}</td>
                     <td>{{item.quantity}}</td>
 

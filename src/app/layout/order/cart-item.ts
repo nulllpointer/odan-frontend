@@ -6,7 +6,7 @@ export class CartItem {
     productId: number
     id:number
     quantity:number
-    productPrice:ProductPrice
+    product:Product
 
     productPriceId: number;
 
