@@ -19,7 +19,7 @@ import {ProductsComponent} from "../products.component";
 export class ProductsDataTables {
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild(MatPaginator) paginator: MatPaginator;
-    displayedColumns = ['id', 'title', 'description', 'productType','category','quantity','price','update price','update inventory', 'update', 'delete'];
+    displayedColumns = ['id', 'title', 'description', 'productType','category','quantity','price','addToInventory', 'update', 'delete'];
     exampleDatabase: ExampleDatabase
     dataSource: ExampleDataSource | null;
     products: Product[];
@@ -38,8 +38,16 @@ export class ProductsDataTables {
     }
 
 
-    createOrUpdateContact(id) {
-        var selectedHero = this.productsComponent.getProductById(id);
+    showProduct(id) {
+        this.productsComponent.showThePanel();
+
+        this.productsComponent.getProductById(id);
+    }
+    updateInventory(id) {
+        this.productsComponent.getProductByIdAndShow(id);
+
+      //  this.productsComponent.showTheDialog();
+
     }
 
     deleteContact() {

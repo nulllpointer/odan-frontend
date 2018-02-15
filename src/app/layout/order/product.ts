@@ -7,5 +7,7 @@ export class Product {
     categoryId:number;
     price:number;
     productType:string;
+    quantity:number;
+    stock:number;
 
 }

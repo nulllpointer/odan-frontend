@@ -10,18 +10,18 @@ import {Product} from "../product";
     animations: [
         trigger('dialog', [
             transition('void => *', [
-                style({ transform: 'scale3d(.3, .3, .3)' }),
+                style({transform: 'scale3d(.3, .3, .3)'}),
                 animate(100)
             ]),
             transition('* => void', [
-                animate(100, style({ transform: 'scale3d(.0, .0, .0)' }))
+                animate(100, style({transform: 'scale3d(.0, .0, .0)'}))
             ])
         ])
     ]
 })
 export class ProductDialogComponent implements OnInit {
     @Input() closable = true;
-    @Input() visible: boolean;
+    @Input() dVisible: boolean;
     id: number;
     datas: any
 
@@ -32,17 +32,17 @@ export class ProductDialogComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.visible=false;
+        this.dVisible = false;
     }
 
     close() {
-        this.visible = false;
-        this.visibleChange.emit(this.visible);
+        this.dVisible = false;
+        this.visibleChange.emit(this.dVisible);
 
     }
 
 
-    helloHero(){
+    helloHero() {
         alert("home calling home");
     }
 
